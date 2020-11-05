@@ -1,12 +1,49 @@
-
+//PUBLIC KEY//
 Public Parameters: Take G & H input (random or user input)
 
  (user input)
  create buttons to take cube moves (eg. "F" "Li" etc.)
 
+
+
+ 	NOTATION
+
+	UPPERCASE = Clockwise to next 90 degree peg
+	lowercase = Anticlockwise to next 90 degree peg
+
+
+
+	FACE & SLICE ROTATION COMMANDS
+
+	F	Front
+	S 	Standing (rotate according to Front Face's orientation)
+	B 	Back
+	
+	L 	Left
+	M 	Middle (rotate according to Left Face's orientation)
+	R 	Right
+	
+	U 	Up
+	E 	Equator (rotate according to Up Face's orientation)
+	D 	Down
+
+
+
+	ENTIRE CUBE ROTATION COMMANDS
+	
+	X   Rotate entire cube according to Right Face's orientation
+	Y   Rotate entire cube according to Up Face's orientation
+	Z   Rotate entire cube according to Front Face's orientation
+
+
+//PRIVATE KEYS//
+
 Alice(User) Private Key: Take a0 & a1 input from user
 
 Bob(Computer) Private Key: Generate random b0 & b1 for computer
+
+
+//MANIPULATE CUBES//
 
 //Step 1
 Alice Actions: cubeA = Iterate through G a0 
@@ -21,6 +58,13 @@ Alice Actions: cubeA = Iterate through H a1
 Bob Actions: cubeB = Iterate through  H b1
 
 Cubes should match!
+
+
+** EXTRAS **
+
+- Reset button for Cubes
+
+- Taking user input for G & H by reading cube rotations
 
 
 
