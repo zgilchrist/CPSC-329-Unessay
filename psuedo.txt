@@ -1,1 +1,26 @@
-ashdofihsaifjh hi
+
+Public Parameters: Take G & H input (random or user input)
+
+ (user input)
+ create buttons to take cube moves (eg. "F" "Li" etc.)
+
+Alice(User) Private Key: Take a0 & a1 input from user
+
+Bob(Computer) Private Key: Generate random b0 & b1 for computer
+
+//Step 1
+Alice Actions: cubeA = Iterate through G a0 
+Bob Actions: cubeB = Iterate through  G b0 
+
+//Step 2
+Alice Actions: cubeB = Iterate through G a0 & H a1 
+Bob Actions: cubeA = Iterate through  G b0 & H b1
+
+//Step 3
+Alice Actions: cubeA = Iterate through H a1 
+Bob Actions: cubeB = Iterate through  H b1
+
+Cubes should match!
+
+
+
