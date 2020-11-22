@@ -1,0 +1,7 @@
+#favicon.png
+img link: https://pixabay.com/vectors/rubik-s-cube-cube-game-puzzle-toy-151670/
+img license: https://pixabay.com/service/license/
+
+#rubiks-cube-icon.svg
+img link: https://pixabay.com/vectors/rubik-s-cube-cube-game-puzzle-toy-151670/
+img license: https://pixabay.com/service/license/
