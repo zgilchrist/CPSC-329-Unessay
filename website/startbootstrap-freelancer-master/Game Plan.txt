@@ -1,0 +1,109 @@
+T: Text Bubble *Wed, Nov 25* 
+
+T: Button input pad for cube rotations letters, number, & bkspc *Wed, Nov 25* 
+
+T: H field G field (public fields) w/ submit buttons *Wed, Nov 25* 
+
+T: ALICE'S Ao field A1 field (private fields) w/ submit buttons *Wed, Nov 25* 
+
+T: BOB's Bo field B1 field (private fields) - for random input *Wed, Nov 25* 
+
+T: Add "Reset" button *Wed, Nov 25* 
+
+T: Add "Hide/Reveal" button on Bob's cube & B0/B1 values *Wed, Nov 25* 
+
+Z: Fill out "How it Works" section *Fri, Nov 27*
+
+DL: Connect button user inputs from html to cube code *Fri, Nov 27*
+
+DL: Add Alice's cube *Fri, Nov 27*
+
+DL: Add Bob's Cube *Fri, Nov 27*
+
+DL & A: Inject cube rotations to table (once cubes are finished running through all moves.) tooltip 14.)
+
+A: Edit sequence of cube rotations to match below tool tip sequence v *Done*
+
+A: Figure out how to swap cubes from Alice's side to Bob's side for tooltip 8.) & 11.) *Fri, Nov 27*
+
+A: Add delay before/after B-values populate fields tooltip 5.) *Fri, Nov 27*
+
+A: *if you have extra time* figure out how to make animations smoooooooooother
+
+--- // Tool Tips// ---
+
+Z: Tool tip implementation **TBD** *Probably one of the last steps to do*
+
+1. Start Button
+-> initiates text pop-up sequence
+
+2. "Enter H-sequence"
+
+-> user inputs H: LJisidh
+-> user hits: "submit"
+
+3. "Enter G-sequence"
+
+-> user inputs G: LJisidh
+-> user hits: "submit"
+
+3. "Enter A0"
+-> user inputs A0: 9
+-> user hits: "submit"
+
+4. "Enter A1"
+-> user inputs A1: 5
+-> user hits: "submit"
+
+5. "Bob enters B1 & B0"
+-> fill out B1 field:
+-> fill out B2 field:
+
+//Step 1
+6."Alice iterates through G squence A0 times"
+-> cube in Alice's column animates
+
+-- Pause
+
+7. "Bob interates through G sequence B0 times"
+-> cube in Bob's column animates
+
+-- Pause
+
+8. "Bob give his cube to Alice. Alice gives her cube to Bob."
+
+//Step 2
+9. "Alice iterates through G sequence A0 times. 
+Then she iterates through H sequence A1 times."
+-> cube in Alice's column animates
+
+-- Pause
+
+10. "Bob iterates through G sequence B0 times. 
+Then she iterates through H sequence B1 times."
+-> cube in Bob's column animates
+
+-- Pause
+
+11. "Bob give his cube to Alice. Alice gives her cube to Bob.
+They now have the same cubes they started with."
+-> cube in Bob's column animates
+
+//Step 3
+12. "Alice iterates through H squence A1 times."
+-> cube in Alice's column animates
+
+--Pause
+
+13. "Bob iterates through H squence B1 times."
+-> cube in Bob's column animates
+
+14. "The cubes appear the same!
+
+
+
+
+
+
+
+  
