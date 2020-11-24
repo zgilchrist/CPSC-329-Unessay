@@ -1709,21 +1709,21 @@ pre code {
 .table-primary,
 .table-primary > th,
 .table-primary > td {
-  background-color: #bfece3;
+  background-color: #159e94;
 }
 .table-primary th,
 .table-primary td,
 .table-primary thead th,
 .table-primary tbody + tbody {
-  border-color: #88dccc;
+  border-color: #159e94;
 }
 
 .table-hover .table-primary:hover {
-  background-color: #abe6da;
+  background-color:#159e94;
 }
 .table-hover .table-primary:hover > td,
 .table-hover .table-primary:hover > th {
-  background-color: #abe6da;
+  background-color: #159e94;
 }
 
 .table-secondary,
