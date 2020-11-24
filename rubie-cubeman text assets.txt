@@ -1,0 +1,13 @@
+//script for rubie-cubeman exchanges during cube rotations
+
+General structure for key exchanges
+
+Now for symmetric key exchanges
+
+//rube-cubeman vs diffie-hellman
+
+Diffie-Hellman is a symmetric public key exchanges that relies upon he use of shard secrets.
+
+Say Alice and Bob want to send each other a message and they want to use a key exchange to keep their message safe. 
+
+They each have a part that is secret and in private domain. Say a,b for Alice and Bob respectively. 
