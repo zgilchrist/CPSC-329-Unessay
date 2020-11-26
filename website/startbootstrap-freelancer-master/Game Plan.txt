@@ -1,14 +1,14 @@
-T: Text Bubble *Wed, Nov 25* 
+T: Text Bubble *Wed, Nov 25* DONE
 
-T: Button input pad for cube rotations letters, number, & bkspc *Wed, Nov 25* 
+T: Button input pad for cube rotations letters, number, & bkspc *Wed, Nov 25* DONE
 
-T: H field G field (public fields) w/ submit buttons *Wed, Nov 25* 
+T: H field G field (public fields) w/ submit buttons *Wed, Nov 25* DONE
 
-T: ALICE'S Ao field A1 field (private fields) w/ submit buttons *Wed, Nov 25* 
+T: ALICE'S Ao field A1 field (private fields) w/ submit buttons *Wed, Nov 25* DONE
 
 T: BOB's Bo field B1 field (private fields) - for random input *Wed, Nov 25* 
 
-T: Add "Reset" button *Wed, Nov 25* 
+T: Add "Reset" button *Wed, Nov 25* DONE
 
 T: Add "Hide/Reveal" button on Bob's cube & B0/B1 values *Wed, Nov 25* 
 
