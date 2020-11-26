@@ -199,7 +199,7 @@ function finalTransition(secrets, buttons) {
 
 
 
-
+// the buttons in order are FSBLMRUED and fsblmrued
 /* CREATING SOME VARIABLES */
 
 var commands = "LRUDFBlrudfb"
