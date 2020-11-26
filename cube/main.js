@@ -1,8 +1,13 @@
 const SEQ_LIM = 5;
 const EXP_LIM = 1;
 const TWIST_TIME = 100;
+const WAIT_TIME = 500;
 
 /* CUBE RUNNING SEQUENCE */
+
+function wait(waitTime, nextFunc, arg) {
+	setTimeout(() => nextFunc(arg), waitTime);
+}
 
 function waitFor(conditionFunction) {
   const poll = resolve => {
@@ -13,6 +18,51 @@ function waitFor(conditionFunction) {
   return new Promise(poll);
 }		
 
+function cubeFadeIn(nextFunc) {
+	var opac = 0;
+	cube1.domElement.style.opacity = opac;
+	cube2.domElement.style.opacity = opac;
+	var id = setInterval(frame, 5);
+	function frame() {
+		if (cube1.domElement.style.opacity >= 1.0) {
+			clearInterval(id);
+		} else {
+			opac += 0.05;
+			cube1.domElement.style.opacity = opac;
+			cube2.domElement.style.opacity = opac;
+		}
+	}
+	
+	waitFor(_ => cube1.domElement.style.opacity >= 1.0).then(_ => nextFunc());
+}
+
+function cubeFadeOut(nextFunc) {
+	var opac = 1.0;
+	cube1.domElement.style.opacity = opac;
+	cube2.domElement.style.opacity = opac;
+	var id = setInterval(frame, 5);
+	function frame() {
+		if (cube1.domElement.style.opacity <= 0.0) {
+			clearInterval(id);
+		} else {
+			opac -= 0.05;
+			cube1.domElement.style.opacity = opac;
+			cube2.domElement.style.opacity = opac;
+		}
+	}
+	
+	waitFor(_ => cube1.domElement.style.opacity <= 0.0).then(_ => swapCubes(nextFunc));
+}
+
+function swapCubes(nextFunc) {
+	loc1 = cube1.domElement.parentNode;
+	loc2 = cube2.domElement.parentNode;
+	loc1.replaceChild(cube2.domElement, cube1.domElement);
+	loc2.insertBefore(cube1.domElement, loc2.firstChild);
+	
+	cubeFadeIn(nextFunc);
+}
+
 function cubeExp(cube, seqA, seqB, expA, expB) {
 	for (var i = 0; i < expA; i++) {
 		cube.twist(seqA);
@@ -22,36 +72,48 @@ function cubeExp(cube, seqA, seqB, expA, expB) {
 	}
 }
 		
-function rubieCubeIt(cube1, cube2, gComms, hComms, secrets) {
+function rubieCubeIt() {
 	cube2.paused = true;
 	cubeExp(cube1, gComms, hComms, secrets[0], 0);
 
 	waitFor(_ => cube1.isTweening() == 9).then(_ => 
-	waitFor(_ => cube1.isTweening() == 0).then(_ => animA(cube1, cube2, gComms, hComms, secrets)));
+	waitFor(_ => cube1.isTweening() == 0).then(_ => wait(WAIT_TIME, animA)));
 }
 
-function animA(cube1, cube2, gComms, hComms, secrets) {
+function animA() {
 	cube1.paused = true; 
 	cube2.paused = false; 
 	cubeExp(cube2, gComms, hComms, secrets[2], 0);
+	
+	waitFor(_ => cube2.isTweening() == 9).then(_ => 
+	waitFor(_ => cube2.isTweening() == 0).then(_ => wait(WAIT_TIME, cubeFadeOut, animB)));
+}
+
+
+function animB() {
 	cubeExp(cube2, gComms, hComms, secrets[0], secrets[1]);
 	
 	waitFor(_ => cube2.isTweening() == 9).then(_ => 
-	waitFor(_ => cube2.isTweening() == 0).then(_ => animB(cube1, cube2, gComms, hComms, secrets)));
+	waitFor(_ => cube2.isTweening() == 0).then(_ => wait(WAIT_TIME, animC)));
 }
 
-
-function animB(cube1, cube2, gComms, hComms, secrets) {
+function animC() {
 	cube1.paused = false;
 	cube2.paused = true; 
 	cubeExp(cube1, gComms, hComms, secrets[2], secrets[3]);
+	
+	waitFor(_ => cube1.isTweening() == 9).then(_ => 
+	waitFor(_ => cube1.isTweening() == 0).then(_ => wait(WAIT_TIME, cubeFadeOut, animD)));
+}
+
+function animD() {
 	cubeExp(cube1, gComms, hComms, 0, secrets[1]);
 	
 	waitFor(_ => cube1.isTweening() == 9).then(_ => 
-	waitFor(_ => cube1.isTweening() == 0).then(_ => animC(cube1, cube2, gComms, hComms, secrets)));
+	waitFor(_ => cube1.isTweening() == 0).then(_ => wait(WAIT_TIME, animE)));
 }
 
-function animC(cube1, cube2, gComms, hComms, secrets) {
+function animE() {
 	cube1.paused = true; 
 	cube2.paused = false; 
 	cubeExp(cube2, gComms, hComms, 0, secrets[3]);
@@ -191,7 +253,7 @@ function finalTransition(secrets, buttons) {
 		secrets[i] = parseInt(secrets[i]);
 	}
 	
-	rubieCubeIt(cube1, cube2, gComms, hComms, secrets);
+	wait(WAIT_TIME, rubieCubeIt);
 }
 
 
