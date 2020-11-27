@@ -155,14 +155,40 @@ var input1='';
 var len = 0;
 var a0Listen=true ,a1Listen=true;
 var secrets = [];
- function cubeinput(c){
-     if(len<SEQ_LIM){
-        input1=input1+c;
-        console.log(input1);
-        len++;
-     }
+
+function twistsToString(moveSet) {
+	fMoveSet = "";
+}
+
+function cubeinput(c){
+	if(len<SEQ_LIM){
+		input1=input1+c;
+		console.log(input1);
+		len++;
+		
+		if (confirmHHandler) document.getElementById("Hvalue").innerHTML = input1;
+		if (confirmGHandler) document.getElementById("Gvalue").innerHTML = input1;
+	}
     
 }
+
+function cubeBksp() {
+	if (len > 0) {
+		input1 = input1.slice(0, -1);
+		console.log(input1);
+		len--
+		
+		if (len == 0) {
+			if (confirmHHandler) document.getElementById("Hvalue").innerHTML = "Print H values";
+			if (confirmGHandler) document.getElementById("Gvalue").innerHTML = "Print G values";
+		}
+		else {
+			if (confirmHHandler) document.getElementById("Hvalue").innerHTML = input1;
+			if (confirmGHandler) document.getElementById("Gvalue").innerHTML = input1;
+		}
+	}
+}
+
 document.getElementById("submitH").onclick=function(){
     
     if(confirmHHandler==true && len==SEQ_LIM){
@@ -170,14 +196,17 @@ document.getElementById("submitH").onclick=function(){
         input1='';
         confirmHHandler=false;
         console.log("H: " + hComms);
-        document.getElementById("Hvalue").innerHTML=hComms;
+        document.getElementById("Hvalue").innerHTML = hComms;
         len=0;
 		
 		document.getElementById("submitH").disabled = true;
 		if (confirmGHandler == false) {
 			for (let i = 0; i < 12; i++) {
 				document.getElementById("Button" + i).disabled = true;
+				document.getElementById("Bksp").disabled = true;
 			}
+		} else {
+			document.getElementById("Gvalue").innerHTML = "Print G values";
 		}
     }
 }
@@ -196,7 +225,10 @@ document.getElementById("submitG").onclick=function(){
 		if (confirmHHandler == false) {
 			for (let i = 0; i < 12; i++) {
 				document.getElementById("Button" + i).disabled = true;
+				document.getElementById("Bksp").disabled = true;
 			}
+		} else {
+			document.getElementById("Hvalue").innerHTML = "Print H values";
 		}
     }
 }
@@ -207,9 +239,8 @@ function seta0(i){
         a0Listen=false;
         console.log("a0: " + secrets[0]);
 		
-		for (let i = 1; i < 10; i++) {
-			document.getElementById("num" + i + "a0").disabled = true;
-		}
+		document.getElementById("dropdownMenuButtona0").disabled = true;
+		document.getElementById("dropdownMenuButtona0").innerHTML = "a <sub>o</sub>&nbsp;=&nbsp;" + i;
     }
     
 }
@@ -219,9 +250,8 @@ function seta1(i){
         a1Listen=false;
         console.log("a1: " + secrets[1]);
 		
-		for (let i = 1; i < 10; i++) {
-			document.getElementById("num" + i + "a1").disabled = true;
-		}
+		document.getElementById("dropdownMenuButtona1").disabled = true;
+		document.getElementById("dropdownMenuButtona1").innerHTML = "a <sub>1</sub>&nbsp;=&nbsp;" + i;
     }
 }
 
