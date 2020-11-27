@@ -7,7 +7,7 @@
         <meta name="author" content="" />
         <title>Freelancer - Start Bootstrap Theme</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />        <!-- Font Awesome icons (free version)-->
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />       <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
@@ -108,7 +108,7 @@
                             </div>
 
                         <!-- H Input Field -->
-                        <form>
+                        <!--<form>
                             <div class="form-row justify-content-center">
                                 <div class="form-group col-auto">
                                     <label class="sr-only" for="inlineFormInputGroup">H Sequence</label>
@@ -122,10 +122,10 @@
                                   <div class="form-group col-auto">
                                     <button type="button" class="btn btn-primary mb-2" id="submitH">Submit</button>
                                   </div>
-                                </div>
+                                </div>-->
                         
                         <!-- G Input Field -->
-                            <div class="form-row justify-content-center">
+                           <!-- <div class="form-row justify-content-center">
                               <div class="form-group col-auto">
                                 <label class="sr-only" for="inlineFormInputGroup">G Sequence</label>
                                 <div class="input-group mb-2">
@@ -139,10 +139,11 @@
                                 <button type="button" class="btn btn-primary mb-2" id="submitG">Submit</button>
                               </div>
                             </div>
-                          </form>
+                          </form>--> 
                     
                         <!--  Input Buttons -->
                         <!-- Clockwise Rotations -->
+                        <div class="row justify-content-center">
                         <div class="btn-group justify-content-center" role="group" aria-label="First group">
                             <button type="button" class="btn btn-primary" id="Button0" onclick="cubeinput('F')">F</button>
                             <!-- <button type="button" class="btn btn-primary" id="Button1">S</button> -->
@@ -155,8 +156,10 @@
                             <button type="button" class="btn btn-primary" id="Button5" onclick="cubeinput('D')">D</button>
                             <button type="button" class="btn btn-primary"><i class="fas fa-backspace"></i></button>
                           </div>
+                        </div>
                         
                         <!-- Counter-Clockwise Rotations -->
+                        <div class="row justify-content-center">
                         <div class="btn-group justify-content-center" role="group" aria-label="First group">
                             <button type="button" class="btn btn-primary" id="Button6" onclick="cubeinput('f')">f</button>
                             <!-- <button type="button" class="btn btn-primary" id="Button10">s</button> -->
@@ -169,6 +172,7 @@
                             <button type="button" class="btn btn-primary" id="Button11" onclick="cubeinput('d')">d</button>
                             <button type="button" class="btn btn-primary font-weight-bold" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-question"></i></button>
                           </div>
+                        </div>
                         
                           <!-- Cube Move Instructions -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -185,7 +189,6 @@
                                     </div>
                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
                                     </div>
                                 </div>
                                 </div>
@@ -193,8 +196,11 @@
 
 
                         <!--  Reset Button -->
+
+                        <div class="row justify-content-center">
                         <div class="btn-group justify-content-center">
                         <button type="button" class="btn btn-outline-secondary btn-lg mt-5">Restart</button>
+                        </div>
                         </div>
                         
                     </div>
@@ -213,16 +219,19 @@
                         </div>
 
                         <!--  Alice's (User) A0 & A1 Input -->
-                        <!-- <div class="btn-group justify-content-center" role="group" aria-label="First group">
-                            <button type="button" class="btn btn-primary" id="num1a0" onclick="seta0(1)">1</button>
-                            <button type="button" class="btn btn-primary" id="num2a0" onclick="seta0(2)">2</button>
-                            <button type="button" class="btn btn-primary" id="num3a0" onclick="seta0(3)">3</button>
-                            <button type="button" class="btn btn-primary" id="num4a0" onclick="seta0(4)">4</button>
-                            <button type="button" class="btn btn-primary" id="num5a0" onclick="seta0(5)">5</button>
-                            <button type="button" class="btn btn-primary" id="num6a0" onclick="seta0(6)">6</button>
-                            <button type="button" class="btn btn-primary" id="num7a0" onclick="seta0(7)">7</button>
-                            <button type="button" class="btn btn-primary" id="num8a0" onclick="seta0(8)">8</button>
-                            <button type="button" class="btn btn-primary" id="num9a0" onclick="seta0(9)">9</button>
+
+                        <!-- **Delara's number buttons**-->
+                        
+                        <!--<div class="btn-group justify-content-center" role="group" aria-label="First group">
+                            <button type="button" class="btn btn-primary" id="num1a0">1</button>
+                            <button type="button" class="btn btn-primary" id="num2a0">2</button>
+                            <button type="button" class="btn btn-primary" id="num3a0">3</button>
+                            <button type="button" class="btn btn-primary" id="num4a0">4</button>
+                            <button type="button" class="btn btn-primary" id="num5a0">5</button>
+                            <button type="button" class="btn btn-primary" id="num6a0">6</button>
+                            <button type="button" class="btn btn-primary" id="num7a0">7</button>
+                            <button type="button" class="btn btn-primary" id="num8a0">8</button>
+                            <button type="button" class="btn btn-primary" id="num9a0">9</button>
                           </div>
 
                           <div class="btn-group justify-content-center" role="group" aria-label="First group">
