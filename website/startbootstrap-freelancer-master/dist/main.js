@@ -158,6 +158,13 @@ var secrets = [];
 
 function twistsToString(moveSet) {
 	fMoveSet = "";
+	for (twist of moveSet) {
+		if (twist == twist.toLowerCase()) fMoveSet += twist.toUpperCase() + "i";
+		else fMoveSet += twist;
+		fMoveSet += " ";
+	}
+	
+	return fMoveSet;
 }
 
 function cubeinput(c){
@@ -166,8 +173,8 @@ function cubeinput(c){
 		console.log(input1);
 		len++;
 		
-		if (confirmHHandler) document.getElementById("Hvalue").innerHTML = input1;
-		if (confirmGHandler) document.getElementById("Gvalue").innerHTML = input1;
+		if (confirmHHandler) document.getElementById("Hvalue").innerHTML = twistsToString(input1);
+		if (confirmGHandler) document.getElementById("Gvalue").innerHTML = twistsToString(input1);
 	}
     
 }
@@ -183,8 +190,8 @@ function cubeBksp() {
 			if (confirmGHandler) document.getElementById("Gvalue").innerHTML = "Print G values";
 		}
 		else {
-			if (confirmHHandler) document.getElementById("Hvalue").innerHTML = input1;
-			if (confirmGHandler) document.getElementById("Gvalue").innerHTML = input1;
+			if (confirmHHandler) document.getElementById("Hvalue").innerHTML = twistsToString(input1);
+			if (confirmGHandler) document.getElementById("Gvalue").innerHTML = twistsToString(input1);
 		}
 	}
 }
@@ -196,7 +203,6 @@ document.getElementById("submitH").onclick=function(){
         input1='';
         confirmHHandler=false;
         console.log("H: " + hComms);
-        document.getElementById("Hvalue").innerHTML = hComms;
         len=0;
 		
 		document.getElementById("submitH").disabled = true;
@@ -218,7 +224,6 @@ document.getElementById("submitG").onclick=function(){
         input1='';
         confirmGHandler=false;
         console.log("G: " + gComms);
-        document.getElementById("Gvalue").innerHTML=gComms;
         len=0;
 		
 		document.getElementById("submitG").disabled = true;
