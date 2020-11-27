@@ -170,6 +170,7 @@ document.getElementById("submitH").onclick=function(){
         input1='';
         confirmHHandler=false;
         console.log("H: " + hComms);
+        document.getElementById("Hvalue").innerHTML=hComms;
         len=0;
 		
 		document.getElementById("submitH").disabled = true;
@@ -188,6 +189,7 @@ document.getElementById("submitG").onclick=function(){
         input1='';
         confirmGHandler=false;
         console.log("G: " + gComms);
+        document.getElementById("Gvalue").innerHTML=gComms;
         len=0;
 		
 		document.getElementById("submitG").disabled = true;
