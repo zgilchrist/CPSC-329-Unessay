@@ -176,7 +176,7 @@ function cubeinput(c){
 		len++;
 		
 		if (confirmHHandler) document.getElementById("Hvalue").innerHTML = twistsToString(input1);
-		else if (confirmGHandler) document.getElementById("Gvalue").innerHTML = twistsToString(input1);
+		if (confirmGHandler) document.getElementById("Gvalue").innerHTML = twistsToString(input1);
 	}
     
 }
@@ -193,7 +193,7 @@ function cubeBksp() {
 		}
 		else {
 			if (confirmHHandler) document.getElementById("Hvalue").innerHTML = twistsToString(input1);
-			else if (confirmGHandler) document.getElementById("Gvalue").innerHTML = twistsToString(input1);
+			if (confirmGHandler) document.getElementById("Gvalue").innerHTML = twistsToString(input1);
 		}
 	}
 }

@@ -6,11 +6,11 @@ T: H field G field (public fields) w/ submit buttons *Wed, Nov 25* DONE
 
 T: ALICE'S Ao field A1 field (private fields) w/ submit buttons *Wed, Nov 25* DONE
 
-T: BOB's Bo field B1 field (private fields) - for random input *Wed, Nov 25* 
+T: BOB's Bo field B1 field (private fields) - for random input *Wed, Nov 25* DONE
 
 T: Add "Reset" button *Wed, Nov 25* DONE
 
-T: Add "Hide/Reveal" button on Bob's cube & B0/B1 values *Wed, Nov 25* 
+T: Add "Hide/Reveal" button on Bob's cube & B0/B1 values *Wed, Nov 25* DONE
 
 Z: Fill out "How it Works" section *Fri, Nov 27*
 
@@ -101,7 +101,21 @@ They now have the same cubes they started with."
 14. "The cubes appear the same!
 
 
+// Game Plan Continued... //
 
+T: Create directional buttons to rotate cubes
+
+T: Clean up UI a bit (link nav bar properly, etc)
+
+T: 4 x 3 keyboard & add "Randomize" button
+
+A: H & G input field previews isolated
+
+A: H & G cube moves input range from 1 to 5 moves
+
+Z: Add copyright to README field
+
+ALL: Write peer assessments and self assessments
 
 
 
