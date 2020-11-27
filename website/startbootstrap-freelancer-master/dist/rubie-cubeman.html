@@ -104,7 +104,7 @@
                         <div class ="row justify-content-center mb-3">
                             <div class="col-md-1 text-center p-2 bg-gray border rounded-left">G</div>
                             <div class="col-md-7 text-left p-2 bg-light border rounded-right"> Print G values </div>
-                            <button type="button" class="col-md-2 text-center btn btn-primary ml-2 p-2" id="submitH">Submit</button>
+                            <button type="button" class="col-md-2 text-center btn btn-primary ml-2 p-2" id="submitG">Submit</button>
                             </div>
 
                         <!-- H Input Field -->
@@ -145,15 +145,15 @@
                         <!-- Clockwise Rotations -->
                         <div class="row justify-content-center">
                         <div class="btn-group justify-content-center" role="group" aria-label="First group">
-                            <button type="button" class="btn btn-primary" id="Button0">F</button>
+                            <button type="button" class="btn btn-primary" id="Button0" onclick="cubeinput('F')">F</button>
                             <!-- <button type="button" class="btn btn-primary" id="Button1">S</button> -->
-                            <button type="button" class="btn btn-primary" id="Button1">B</button>
-                            <button type="button" class="btn btn-primary" id="Button2">L</button>
+                            <button type="button" class="btn btn-primary" id="Button1" onclick="cubeinput('B')">B</button>
+                            <button type="button" class="btn btn-primary" id="Button2" onclick="cubeinput('L')">L</button>
                             <!-- <button type="button" class="btn btn-primary" id="Button4">M</button> -->
-                            <button type="button" class="btn btn-primary" id="Butto3">R</button>
-                            <button type="button" class="btn btn-primary" id="Button4">U</button>
+                            <button type="button" class="btn btn-primary" id="Button3" onclick="cubeinput('R')">R</button>
+                            <button type="button" class="btn btn-primary" id="Button4" onclick="cubeinput('U')">U</button>
                             <!-- <button type="button" class="btn btn-primary" id="Button7">E</button> -->
-                            <button type="button" class="btn btn-primary" id="Button5">D</button>
+                            <button type="button" class="btn btn-primary" id="Button5" onclick="cubeinput('D')">D</button>
                             <button type="button" class="btn btn-primary"><i class="fas fa-backspace"></i></button>
                           </div>
                         </div>
@@ -161,15 +161,15 @@
                         <!-- Counter-Clockwise Rotations -->
                         <div class="row justify-content-center">
                         <div class="btn-group justify-content-center" role="group" aria-label="First group">
-                            <button type="button" class="btn btn-primary" id="Button6">f</button>
+                            <button type="button" class="btn btn-primary" id="Button6" onclick="cubeinput('f')">f</button>
                             <!-- <button type="button" class="btn btn-primary" id="Button10">s</button> -->
-                            <button type="button" class="btn btn-primary" id="Button7">b</button>
-                            <button type="button" class="btn btn-primary" id="Button8">l</button>
+                            <button type="button" class="btn btn-primary" id="Button7" onclick="cubeinput('b')">b</button>
+                            <button type="button" class="btn btn-primary" id="Button8" onclick="cubeinput('l')">l</button>
                             <!-- <button type="button" class="btn btn-primary" id="Button13">m</button> -->
-                            <button type="button" class="btn btn-primary" id="Button9">r</button>
-                            <button type="button" class="btn btn-primary" id="Button10">u</button>
+                            <button type="button" class="btn btn-primary" id="Button9" onclick="cubeinput('r')">r</button>
+                            <button type="button" class="btn btn-primary" id="Button10" onclick="cubeinput('u')">u</button>
                             <!-- <button type="button" class="btn btn-primary" id="Button11">e</button> -->
-                            <button type="button" class="btn btn-primary" id="Button11">d</button>
+                            <button type="button" class="btn btn-primary" id="Button11" onclick="cubeinput('d')">d</button>
                             <button type="button" class="btn btn-primary font-weight-bold" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-question"></i></button>
                           </div>
                         </div>
@@ -248,38 +248,38 @@
 
                         <!-- **Hey Delara! Try this drop-down menu instead! I tried making the dropdown items button objects** -->
                          <!-- ** Note: I added your button id's to the new drop down objects as well ** -->
-                        <div class="dropdown mt-5">
+                         <div class="dropdown mt-5">
                             <button class="btn btn-secondary font-weight-bold dropdown-toggle" type="button" id="dropdownMenuButtona0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              a <sub>o</sub>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <button class="dropdown-item btn" type="button" id="num1a0"> 1</button>  
-                              <button class="dropdown-item btn" type="button" id="num2a0"> 2</button> 
-                              <button class="dropdown-item btn" type="button" id="num3a0"> 3</button> 
-                              <button class="dropdown-item btn" type="button" id="num4a0"> 4</button> 
-                              <button class="dropdown-item btn" type="button" id="num5a0"> 5</button> 
-                              <button class="dropdown-item btn" type="button" id="num6a0"> 6</button> 
-                              <button class="dropdown-item btn" type="button" id="num7a0"> 7</button> 
-                              <button class="dropdown-item btn" type="button" id="num8a0"> 8</button> 
-                              <button class="dropdown-item btn" type="button" id="num9a0"> 9</button> 
+                              <button class="dropdown-item btn" type="button" id="num1a0"  onclick="seta0(1)"> 1</button>  
+                              <button class="dropdown-item btn" type="button" id="num2a0"  onclick="seta0(2)"> 2</button> 
+                              <button class="dropdown-item btn" type="button" id="num3a0"  onclick="seta0(3)"> 3</button> 
+                              <button class="dropdown-item btn" type="button" id="num4a0"  onclick="seta0(4)"> 4</button> 
+                              <button class="dropdown-item btn" type="button" id="num5a0"  onclick="seta0(5)"> 5</button> 
+                              <button class="dropdown-item btn" type="button" id="num6a0"  onclick="seta0(6)"> 6</button> 
+                              <button class="dropdown-item btn" type="button" id="num7a0"  onclick="seta0(7)"> 7</button> 
+                              <button class="dropdown-item btn" type="button" id="num8a0"  onclick="seta0(8)"> 8</button> 
+                              <button class="dropdown-item btn" type="button" id="num9a0"  onclick="seta0(9)"> 9</button> 
                             </div>
-                          
+                          </div>
+                            <div class="dropdown mt-5"> 
                             <button class="btn btn-secondary font-weight-bold dropdown-toggle" type="button" id="dropdownMenuButtona1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              a <sub>1</sub>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <button class="dropdown-item btn" type="button" id="num1a1"> 1</button>  
-                                <button class="dropdown-item btn" type="button" id="num2a1"> 2</button> 
-                                <button class="dropdown-item btn" type="button" id="num3a1"> 3</button> 
-                                <button class="dropdown-item btn" type="button" id="num4a1"> 4</button> 
-                                <button class="dropdown-item btn" type="button" id="num5a1"> 5</button> 
-                                <button class="dropdown-item btn" type="button" id="num6a1"> 6</button> 
-                                <button class="dropdown-item btn" type="button" id="num7a1"> 7</button> 
-                                <button class="dropdown-item btn" type="button" id="num8a1"> 8</button> 
-                                <button class="dropdown-item btn" type="button" id="num9a1"> 9</button>
+                                <button class="dropdown-item btn" type="button" id="num1a1"  onclick="seta1(1)"> 1</button>  
+                                <button class="dropdown-item btn" type="button" id="num2a1"  onclick="seta1(2)"> 2</button> 
+                                <button class="dropdown-item btn" type="button" id="num3a1"  onclick="seta1(3)"> 3</button> 
+                                <button class="dropdown-item btn" type="button" id="num4a1"  onclick="seta1(4)"> 4</button> 
+                                <button class="dropdown-item btn" type="button" id="num5a1"  onclick="seta1(5)"> 5</button> 
+                                <button class="dropdown-item btn" type="button" id="num6a1"  onclick="seta1(6)"> 6</button> 
+                                <button class="dropdown-item btn" type="button" id="num7a1"  onclick="seta1(7)"> 7</button> 
+                                <button class="dropdown-item btn" type="button" id="num8a1"  onclick="seta1(8)"> 8</button> 
+                                <button class="dropdown-item btn" type="button" id="num9a1"  onclick="seta1(8)"> 9</button>
                             </div>
                           </div>
-                          
                     
                     </div>
                 </div>
