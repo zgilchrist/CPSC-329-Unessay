@@ -60,26 +60,54 @@
                     <div class="col-lg-4 ml-auto text-center">
 
                         <!-- Bob's Heading-->
-                        <h1 class="page-section-heading text-center text-uppercase text-primary mt-3">Bob</h1>
+                        <div class="row justify-content-center mt-3">
+                        <h1 class="page-section-heading text-center text-uppercase text-primary mt-0">Bob</h1>
+
+                        <!-- Toggle Bob's Cube on/off-->
+                        
+                            <a class="col-auto text-center text-primary btn btn-white font-weight-bold" data-toggle="collapse" href="#BobCubeCollapse" role="button" aria-expanded="true" aria-controls="BobCubeCollapse">
+                                <i class="fas fa-minus-circle"></i> </a>
+                        </div>
                     
                     
                         <!--  Bob's Cube -->
                         <div class="row">
-                            <div class="col-sm mt-4">
+                            <div class="col-sm mt-4 shown.bs.collapse" id="BobCubeCollapse">
                                 <div id="BobCube"></div>
                             </div>
                         </div>
 
                         <!--  Bob's (Computer) Input -->
+                         <!-- B0 button -->
+                        <div class="row justify-content-center mt-5">
+                            <a class="col-auto text-center btn btn-secondary font-weight-bold mx-auto" data-toggle="collapse" href="#b0collapse" role="button" aria-expanded="false" aria-controls="bocollapse">
+                                b <sub>o</sub></a>
+                        </div>
 
-                        <div class="row">
-                            <div class="col-sm mt-3">
-                              Bob's User Input
+                        <!-- B0 collapsable value -->
+
+                        <div class="collapse" id="b0collapse">
+                            <div class="card mx-auto card-body w-25">
+                              B0 value
                             </div>
+                          </div>
+
+                        <!-- B1 button -->
+                        <div class="row justify-content-center mt-3">
+                            <a class="col-auto text-center btn btn-secondary font-weight-bold" data-toggle="collapse" href="#b1collapse" role="button" aria-expanded="false" aria-controls="bocollapse">
+                                b <sub>1</sub></a>
                         </div>
                     
-                    </div>
+                        <!-- B1 collapsable value -->
 
+                        <div class="collapse" id="b1collapse">
+                            <div class="card mx-auto card-body w-25">
+                              B1 value
+                            </div>
+                          </div>
+
+
+                    </div>
                     <!-- Middle UI -->
                     <div class="col-lg-4 mx-auto text-center">
 
@@ -264,7 +292,7 @@
                               <button class="dropdown-item btn" type="button" id="num9a0"  onclick="seta0(9)"> 9</button> 
                             </div>
                           </div>
-                            <div class="dropdown mt-5"> 
+                            <div class="dropdown mt-3"> 
                             <button class="btn btn-secondary font-weight-bold dropdown-toggle" type="button" id="dropdownMenuButtona1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              a <sub>1</sub>&nbsp;=&nbsp;?
                             </button>
