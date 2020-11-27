@@ -155,7 +155,7 @@ var input1='';
 var len = 0;
 var a0Listen=true ,a1Listen=true;
 var secrets = [];
- function cubeinpute(c){
+ function cubeinput(c){
      if(len<SEQ_LIM){
         input1=input1+c;
         console.log(input1);
