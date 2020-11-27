@@ -128,6 +128,8 @@ function transition() {
 	secrets[2] = Math.floor(Math.random() * 8) + 1;
 	secrets[3] = Math.floor(Math.random() * 8) + 1;
 
+	document.getElementById("b0").innerHTML = secrets[2];
+	document.getElementById("b1").innerHTML = secrets[3];
 	console.log("b0: " + secrets[2]);
 	console.log("b1: " + secrets[3]);
 	
@@ -174,7 +176,7 @@ function cubeinput(c){
 		len++;
 		
 		if (confirmHHandler) document.getElementById("Hvalue").innerHTML = twistsToString(input1);
-		if (confirmGHandler) document.getElementById("Gvalue").innerHTML = twistsToString(input1);
+		else if (confirmGHandler) document.getElementById("Gvalue").innerHTML = twistsToString(input1);
 	}
     
 }
@@ -191,7 +193,7 @@ function cubeBksp() {
 		}
 		else {
 			if (confirmHHandler) document.getElementById("Hvalue").innerHTML = twistsToString(input1);
-			if (confirmGHandler) document.getElementById("Gvalue").innerHTML = twistsToString(input1);
+			else if (confirmGHandler) document.getElementById("Gvalue").innerHTML = twistsToString(input1);
 		}
 	}
 }
