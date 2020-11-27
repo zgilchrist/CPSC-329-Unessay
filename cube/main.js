@@ -63,6 +63,15 @@ function swapCubes(nextFunc) {
 	cubeFadeIn(nextFunc);
 }
 
+function dualAnimSwitchNaive() {
+	cube1.paused = !cube1.paused;
+	cube2.paused = !cube2.paused;
+}
+
+function dualAnimSwitchNodewise(first, second) {
+	
+}
+
 function cubeExp(cube, seqA, seqB, expA, expB) {
 	for (var i = 0; i < expA; i++) {
 		cube.twist(seqA);
@@ -73,7 +82,6 @@ function cubeExp(cube, seqA, seqB, expA, expB) {
 }
 		
 function rubieCubeIt() {
-	cube2.paused = true;
 	cubeExp(cube1, gComms, hComms, secrets[0], 0);
 
 	waitFor(_ => cube1.isTweening() == 9).then(_ => 
@@ -81,8 +89,7 @@ function rubieCubeIt() {
 }
 
 function animA() {
-	cube1.paused = true; 
-	cube2.paused = false; 
+	dualAnimSwitchNaive();
 	cubeExp(cube2, gComms, hComms, secrets[2], 0);
 	
 	waitFor(_ => cube2.isTweening() == 9).then(_ => 
@@ -98,8 +105,7 @@ function animB() {
 }
 
 function animC() {
-	cube1.paused = false;
-	cube2.paused = true; 
+	dualAnimSwitchNaive();
 	cubeExp(cube1, gComms, hComms, secrets[2], secrets[3]);
 	
 	waitFor(_ => cube1.isTweening() == 9).then(_ => 
@@ -114,8 +120,7 @@ function animD() {
 }
 
 function animE() {
-	cube1.paused = true; 
-	cube2.paused = false; 
+	dualAnimSwitchNaive();
 	cubeExp(cube2, gComms, hComms, 0, secrets[3]);
 }
 
@@ -337,6 +342,7 @@ cube1.keyboardControlsEnabled = false;
 cube2.keyboardControlsEnabled = false;
 cube1.twistDuration = TWIST_TIME;
 cube2.twistDuration = TWIST_TIME / 20;
+cube2.paused = true;
 
 /* INITIAL ONCLICK ASSIGNMENTS */
 
