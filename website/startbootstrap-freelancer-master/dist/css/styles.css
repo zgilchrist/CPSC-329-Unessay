@@ -24,7 +24,7 @@
   --light-teal:#57b1a9;
   --cyan: #17a2b8;
   --white: #fff;
-  --gray: #6c757d;
+  --gray: #9ca4ac;
   --gray-dark: #343a40;
   --primary: #ffbd42;
   --secondary: #57b1a9;
@@ -6158,6 +6158,10 @@ button.bg-dark:focus {
 
 .bg-white {
   background-color: #fff !important;
+}
+
+.bg-gray {
+  background-color: #f0f0f0 !important;
 }
 
 .bg-transparent {

@@ -7,7 +7,7 @@
         <meta name="author" content="" />
         <title>Freelancer - Start Bootstrap Theme</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />        <!-- Font Awesome icons (free version)-->
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />       <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
@@ -92,9 +92,23 @@
                         </div>
 
                         <!--  H & G -->
+                        
+                        <!-- H Input Field -->
+                        <div class ="row justify-content-center mb-3">
+                            <div class="col-md-1 text-center p-2 bg-gray border rounded-left">H</div>
+                            <div class="col-md-7 text-left p-2 bg-light border rounded-right"> Print H values </div>
+                            <button type="button" class="col-md-2 text-center btn btn-primary ml-2 p-2" id="submitH">Submit</button>
+                            </div>
+
+                        <!-- G Input Field -->
+                        <div class ="row justify-content-center mb-3">
+                            <div class="col-md-1 text-center p-2 bg-gray border rounded-left">G</div>
+                            <div class="col-md-7 text-left p-2 bg-light border rounded-right"> Print G values </div>
+                            <button type="button" class="col-md-2 text-center btn btn-primary ml-2 p-2" id="submitH">Submit</button>
+                            </div>
 
                         <!-- H Input Field -->
-                        <form>
+                        <!--<form>
                             <div class="form-row justify-content-center">
                                 <div class="form-group col-auto">
                                     <label class="sr-only" for="inlineFormInputGroup">H Sequence</label>
@@ -108,10 +122,10 @@
                                   <div class="form-group col-auto">
                                     <button type="button" class="btn btn-primary mb-2" id="submitH">Submit</button>
                                   </div>
-                                </div>
+                                </div>-->
                         
                         <!-- G Input Field -->
-                            <div class="form-row justify-content-center">
+                           <!-- <div class="form-row justify-content-center">
                               <div class="form-group col-auto">
                                 <label class="sr-only" for="inlineFormInputGroup">G Sequence</label>
                                 <div class="input-group mb-2">
@@ -125,10 +139,11 @@
                                 <button type="button" class="btn btn-primary mb-2" id="submitG">Submit</button>
                               </div>
                             </div>
-                          </form>
+                          </form>--> 
                     
                         <!--  Input Buttons -->
                         <!-- Clockwise Rotations -->
+                        <div class="row justify-content-center">
                         <div class="btn-group justify-content-center" role="group" aria-label="First group">
                             <button type="button" class="btn btn-primary" id="Button0">F</button>
                             <!-- <button type="button" class="btn btn-primary" id="Button1">S</button> -->
@@ -139,9 +154,12 @@
                             <button type="button" class="btn btn-primary" id="Button4">U</button>
                             <!-- <button type="button" class="btn btn-primary" id="Button7">E</button> -->
                             <button type="button" class="btn btn-primary" id="Button5">D</button>
+                            <button type="button" class="btn btn-primary"><i class="fas fa-backspace"></i></button>
                           </div>
+                        </div>
                         
                         <!-- Counter-Clockwise Rotations -->
+                        <div class="row justify-content-center">
                         <div class="btn-group justify-content-center" role="group" aria-label="First group">
                             <button type="button" class="btn btn-primary" id="Button6">f</button>
                             <!-- <button type="button" class="btn btn-primary" id="Button10">s</button> -->
@@ -152,9 +170,9 @@
                             <button type="button" class="btn btn-primary" id="Button10">u</button>
                             <!-- <button type="button" class="btn btn-primary" id="Button11">e</button> -->
                             <button type="button" class="btn btn-primary" id="Button11">d</button>
-                            <button type="button" class="btn btn-primary font-weight-bold text-danger" data-toggle="modal" data-target="#exampleModal">
-                            ? </button>
+                            <button type="button" class="btn btn-primary font-weight-bold" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-question"></i></button>
                           </div>
+                        </div>
                         
                           <!-- Cube Move Instructions -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -171,7 +189,6 @@
                                     </div>
                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
                                     </div>
                                 </div>
                                 </div>
@@ -179,8 +196,11 @@
 
 
                         <!--  Reset Button -->
+
+                        <div class="row justify-content-center">
                         <div class="btn-group justify-content-center">
                         <button type="button" class="btn btn-outline-secondary btn-lg mt-5">Restart</button>
+                        </div>
                         </div>
                         
                     </div>
@@ -199,7 +219,10 @@
                         </div>
 
                         <!--  Alice's (User) A0 & A1 Input -->
-                        <div class="btn-group justify-content-center" role="group" aria-label="First group">
+
+                        <!-- **Delara's number buttons**-->
+                        
+                        <!--<div class="btn-group justify-content-center" role="group" aria-label="First group">
                             <button type="button" class="btn btn-primary" id="num1a0">1</button>
                             <button type="button" class="btn btn-primary" id="num2a0">2</button>
                             <button type="button" class="btn btn-primary" id="num3a0">3</button>
@@ -221,38 +244,41 @@
                             <button type="button" class="btn btn-primary" id="num7a1">7</button>
                             <button type="button" class="btn btn-primary" id="num8a1">8</button>
                             <button type="button" class="btn btn-primary" id="num9a1">9</button>
-                          </div>
-                        <!-- <div class="dropdown mt-5"> -->
-                            <!-- <button class="btn btn-secondary font-weight-bold dropdown-toggle" type="button" id="dropdownMenuButtona0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          </div>-->
+
+                        <!-- **Hey Delara! Try this drop-down menu instead! I tried making the dropdown items button objects** -->
+                         <!-- ** Note: I added your button id's to the new drop down objects as well ** -->
+                        <div class="dropdown mt-5">
+                            <button class="btn btn-secondary font-weight-bold dropdown-toggle" type="button" id="dropdownMenuButtona0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              a <sub>o</sub>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#" id="num1a0">1</a>
-                              <a class="dropdown-item" href="#" id="num2a0">2</a>
-                              <a class="dropdown-item" href="#" id="num3a0">3</a>
-                              <a class="dropdown-item" href="#" id="num4a0">4</a>
-                              <a class="dropdown-item" href="#" id="num5a0">5</a>
-                              <a class="dropdown-item" href="#" id="num6a0">6</a>
-                              <a class="dropdown-item" href="#" id="num7a0">7</a>
-                              <a class="dropdown-item" href="#" id="num8a0">8</a>
-                              <a class="dropdown-item" href="#" id="num9a0">9</a>
+                              <button class="dropdown-item btn" type="button" id="num1a0"> 1</button>  
+                              <button class="dropdown-item btn" type="button" id="num2a0"> 2</button> 
+                              <button class="dropdown-item btn" type="button" id="num3a0"> 3</button> 
+                              <button class="dropdown-item btn" type="button" id="num4a0"> 4</button> 
+                              <button class="dropdown-item btn" type="button" id="num5a0"> 5</button> 
+                              <button class="dropdown-item btn" type="button" id="num6a0"> 6</button> 
+                              <button class="dropdown-item btn" type="button" id="num7a0"> 7</button> 
+                              <button class="dropdown-item btn" type="button" id="num8a0"> 8</button> 
+                              <button class="dropdown-item btn" type="button" id="num9a0"> 9</button> 
                             </div>
                           
                             <button class="btn btn-secondary font-weight-bold dropdown-toggle" type="button" id="dropdownMenuButtona1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              a <sub>1</sub>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#" id="num1a1">1</a>
-                              <a class="dropdown-item" href="#" id="num2a1">2</a>
-                              <a class="dropdown-item" href="#" id="num3a1">3</a>
-                              <a class="dropdown-item" href="#" id="num4a1">4</a>
-                              <a class="dropdown-item" href="#" id="num5a1">5</a>
-                              <a class="dropdown-item" href="#" id="num6a1">6</a>
-                              <a class="dropdown-item" href="#" id="num7a1">7</a>
-                              <a class="dropdown-item" href="#" id="num8a1">8</a>
-                              <a class="dropdown-item" href="#" id="num9a1">9</a>
-                            </div> -->
-                          <!-- </div> -->
+                                <button class="dropdown-item btn" type="button" id="num1a1"> 1</button>  
+                                <button class="dropdown-item btn" type="button" id="num2a1"> 2</button> 
+                                <button class="dropdown-item btn" type="button" id="num3a1"> 3</button> 
+                                <button class="dropdown-item btn" type="button" id="num4a1"> 4</button> 
+                                <button class="dropdown-item btn" type="button" id="num5a1"> 5</button> 
+                                <button class="dropdown-item btn" type="button" id="num6a1"> 6</button> 
+                                <button class="dropdown-item btn" type="button" id="num7a1"> 7</button> 
+                                <button class="dropdown-item btn" type="button" id="num8a1"> 8</button> 
+                                <button class="dropdown-item btn" type="button" id="num9a1"> 9</button>
+                            </div>
+                          </div>
                           
                     
                     </div>
