@@ -5,9 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Freelancer - Start Bootstrap Theme</title>
+        <title>Rubie-Cubeman</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />       <!-- Font Awesome icons (free version)-->
+        <link rel="icon" type="image/x-icon" href="assets/img/rubiks-cube-icon.svg" />        <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
@@ -33,7 +33,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">Rubie-Cubeman</a>
+                <a class="navbar-brand js-scroll-trigger" href="/website/startbootstrap-freelancer-master/dist/index.html">Rubie-Cubeman</a>
                 <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -42,7 +42,6 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">Cube</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Table</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">TBD</a></li>
                     </ul>
                 </div>
             </div>
@@ -87,13 +86,13 @@
                         <!-- B0 collapsable value -->
 
                         <div class="collapse" id="b0collapse">
-                            <div class="card mx-auto card-body w-25" id="b0">
-                              B0 value
+                            <div class="card mx-auto card-body font-weight-bold w-25" id="b0">
+                               ?
                             </div>
                           </div>
 
                         <!-- B1 button -->
-                        <div class="row justify-content-center mt-3">
+                        <div class="row justify-content-center mt-2">
                             <a class="col-auto text-center btn btn-secondary font-weight-bold" data-toggle="collapse" href="#b1collapse" role="button" aria-expanded="false" aria-controls="bocollapse">
                                 b <sub>1</sub></a>
                         </div>
@@ -101,8 +100,8 @@
                         <!-- B1 collapsable value -->
 
                         <div class="collapse" id="b1collapse">
-                            <div class="card mx-auto card-body w-25" id="b1">
-                              B1 value
+                            <div class="card mx-auto card-body font-weight-bold w-25" id="b1">
+                                ?
                             </div>
                           </div>
 
@@ -134,44 +133,19 @@
                             <div class="col-md-7 text-left p-2 bg-light border rounded-right" id="Gvalue"> Print G values </div>
                             <button type="button" class="col-md-2 text-center btn btn-primary ml-2 p-2" id="submitG">Submit</button>
                             </div>
-
-                        <!-- H Input Field -->
-                        <!--<form>
-                            <div class="form-row justify-content-center">
-                                <div class="form-group col-auto">
-                                    <label class="sr-only" for="inlineFormInputGroup">H Sequence</label>
-                                    <div class="input-group mb-2">
-                                      <div class="input-group-prepend">
-                                        <div class="input-group-text">H</div>
-                                      </div>
-                                      <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Select cube moves">
-                                    </div>
-                                  </div>
-                                  <div class="form-group col-auto">
-                                    <button type="button" class="btn btn-primary mb-2" id="submitH">Submit</button>
-                                  </div>
-                                </div>-->
-                        
-                        <!-- G Input Field -->
-                           <!-- <div class="form-row justify-content-center">
-                              <div class="form-group col-auto">
-                                <label class="sr-only" for="inlineFormInputGroup">G Sequence</label>
-                                <div class="input-group mb-2">
-                                  <div class="input-group-prepend">
-                                    <div class="input-group-text">G</div>
-                                  </div>
-                                  <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Select cube moves">
-                                </div>
-                              </div>
-                              <div class="form-group col-auto">
-                                <button type="button" class="btn btn-primary mb-2" id="submitG">Submit</button>
-                              </div>
-                            </div>
-                          </form>--> 
+ 
                     
                         <!--  Input Buttons -->
-                        <!-- Clockwise Rotations -->
+
+                        <!-- Randomize Rotations -->
                         <div class="row justify-content-center">
+                            <div class="btn-group justify-content-center">
+                            <button type="button" class="btn btn-primary mt-3 mb-1" onclick="history.go(0);"><i class="fas fa-random"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Clockwise Rotations -->
+                        <div class="row justify-content-center mb-1">
                         <div class="btn-group justify-content-center" role="group" aria-label="First group">
                             <button type="button" class="btn btn-primary" id="Button0" onclick="cubeinput('F')">F</button>
                             <!-- <button type="button" class="btn btn-primary" id="Button1">S</button> -->
@@ -227,7 +201,7 @@
 
                         <div class="row justify-content-center">
                         <div class="btn-group justify-content-center">
-                        <button type="button" class="btn btn-outline-secondary btn-lg mt-5" onclick="history.go(0);">Restart</button>
+                        <button type="button" class="btn btn-outline-secondary btn-lg mt-4" onclick="history.go(0);">Restart</button>
                         </div>
                         </div>
                         
@@ -246,36 +220,8 @@
                             </div>
                         </div>
 
-                        <!--  Alice's (User) A0 & A1 Input -->
 
-                        <!-- **Delara's number buttons**-->
-                        
-                        <!--<div class="btn-group justify-content-center" role="group" aria-label="First group">
-                            <button type="button" class="btn btn-primary" id="num1a0">1</button>
-                            <button type="button" class="btn btn-primary" id="num2a0">2</button>
-                            <button type="button" class="btn btn-primary" id="num3a0">3</button>
-                            <button type="button" class="btn btn-primary" id="num4a0">4</button>
-                            <button type="button" class="btn btn-primary" id="num5a0">5</button>
-                            <button type="button" class="btn btn-primary" id="num6a0">6</button>
-                            <button type="button" class="btn btn-primary" id="num7a0">7</button>
-                            <button type="button" class="btn btn-primary" id="num8a0">8</button>
-                            <button type="button" class="btn btn-primary" id="num9a0">9</button>
-                          </div>
-
-                          <div class="btn-group justify-content-center" role="group" aria-label="First group">
-                            <button type="button" class="btn btn-primary" id="num1a1">1</button>
-                            <button type="button" class="btn btn-primary" id="num2a1">2</button>
-                            <button type="button" class="btn btn-primary" id="num3a1">3</button>
-                            <button type="button" class="btn btn-primary" id="num4a1">4</button>
-                            <button type="button" class="btn btn-primary" id="num5a1">5</button>
-                            <button type="button" class="btn btn-primary" id="num6a1">6</button>
-                            <button type="button" class="btn btn-primary" id="num7a1">7</button>
-                            <button type="button" class="btn btn-primary" id="num8a1">8</button>
-                            <button type="button" class="btn btn-primary" id="num9a1">9</button>
-                          </div>-->
-
-                        <!-- **Hey Delara! Try this drop-down menu instead! I tried making the dropdown items button objects** -->
-                         <!-- ** Note: I added your button id's to the new drop down objects as well ** -->
+                        <!-- Alice's ao & a1 Input -->
                          <div class="dropdown mt-5">
                             <button class="btn btn-secondary font-weight-bold dropdown-toggle" type="button" id="dropdownMenuButtona0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              a <sub>o</sub>&nbsp;=&nbsp;?
@@ -289,10 +235,11 @@
                               <button class="dropdown-item btn" type="button" id="num6a0"  onclick="seta0(6)"> 6</button> 
                               <button class="dropdown-item btn" type="button" id="num7a0"  onclick="seta0(7)"> 7</button> 
                               <button class="dropdown-item btn" type="button" id="num8a0"  onclick="seta0(8)"> 8</button> 
-                              <button class="dropdown-item btn" type="button" id="num9a0"  onclick="seta0(9)"> 9</button> 
+                              <button class="dropdown-item btn" type="button" id="num9a0"  onclick="seta0(9)"> 9</button>
+                              <button class="dropdown-item btn font-weight-bold" type="button" id=""  onclick=""> <i class="fas fa-random"></i></button>
                             </div>
                           </div>
-                            <div class="dropdown mt-3"> 
+                            <div class="dropdown mt-2"> 
                             <button class="btn btn-secondary font-weight-bold dropdown-toggle" type="button" id="dropdownMenuButtona1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              a <sub>1</sub>&nbsp;=&nbsp;?
                             </button>
@@ -306,6 +253,7 @@
                                 <button class="dropdown-item btn" type="button" id="num7a1"  onclick="seta1(7)"> 7</button> 
                                 <button class="dropdown-item btn" type="button" id="num8a1"  onclick="seta1(8)"> 8</button> 
                                 <button class="dropdown-item btn" type="button" id="num9a1"  onclick="seta1(8)"> 9</button>
+                                <button class="dropdown-item btn font-weight-bold" type="button" id=""  onclick=""> <i class="fas fa-random"></i></button>
                             </div>
                           </div>
                     
@@ -341,252 +289,16 @@
             </div>
         </section>
 
-        <!-- Footer-->
-        <footer class="footer text-center">
-            <div class="container">
-                <div class="row">
-                    <!-- Footer Location-->
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <h4 class="text-uppercase mb-4">Location</h4>
-                        <p class="lead mb-0">
-                            2215 John Daniel Drive
-                            <br />
-                            Clark, MO 65243
-                        </p>
-                    </div>
-                    <!-- Footer Social Icons-->
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <h4 class="text-uppercase mb-4">Around the Web</h4>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
-                    </div>
-                    <!-- Footer About Text-->
-                    <div class="col-lg-4">
-                        <h4 class="text-uppercase mb-4">About Freelancer</h4>
-                        <p class="lead mb-0">
-                            Freelance is a free to use, MIT licensed Bootstrap theme created by
-                            <a href="http://startbootstrap.com">Start Bootstrap</a>
-                            .
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
+
         <!-- Copyright Section-->
-        <div class="copyright py-4 text-center text-white">
-            <div class="container"><small>Copyright © Your Website 2020</small></div>
+        <div class="copyright py-4 text-center bg-secondary text-white">
+            <div class="container"><small>Copyright © pr.iva.cy 2020</small></div>
         </div>
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
         <div class="scroll-to-top d-lg-none position-fixed">
             <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a>
         </div>
-        <!-- Portfolio Modals-->
-        <!-- Portfolio Modal 1-->
-        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-labelledby="portfolioModal1Label" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document">
-                <div class="modal-content">
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                    </button>
-                    <div class="modal-body text-center">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal1Label">Log Cabin</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-key"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div>
-                                    <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cabin.png" alt="" />
-                                    <!-- Portfolio Modal - Text-->
-                                    <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                                    <button class="btn btn-primary" data-dismiss="modal">
-                                        <i class="fas fa-times fa-fw"></i>
-                                        Close Window
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio Modal 2-->
-        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-labelledby="portfolioModal2Label" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document">
-                <div class="modal-content">
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                    </button>
-                    <div class="modal-body text-center">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal2Label">Tasty Cake</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-key"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div>
-                                    <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cake.png" alt="" />
-                                    <!-- Portfolio Modal - Text-->
-                                    <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                                    <button class="btn btn-primary" data-dismiss="modal">
-                                        <i class="fas fa-times fa-fw"></i>
-                                        Close Window
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio Modal 3-->
-        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-labelledby="portfolioModal3Label" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document">
-                <div class="modal-content">
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                    </button>
-                    <div class="modal-body text-center">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal3Label">Circus Tent</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-key"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div>
-                                    <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/circus.png" alt="" />
-                                    <!-- Portfolio Modal - Text-->
-                                    <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                                    <button class="btn btn-primary" data-dismiss="modal">
-                                        <i class="fas fa-times fa-fw"></i>
-                                        Close Window
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio Modal 4-->
-        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-labelledby="portfolioModal4Label" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document">
-                <div class="modal-content">
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                    </button>
-                    <div class="modal-body text-center">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal4Label">Controller</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-key"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div>
-                                    <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/game.png" alt="" />
-                                    <!-- Portfolio Modal - Text-->
-                                    <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                                    <button class="btn btn-primary" data-dismiss="modal">
-                                        <i class="fas fa-times fa-fw"></i>
-                                        Close Window
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio Modal 5-->
-        <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-labelledby="portfolioModal5Label" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document">
-                <div class="modal-content">
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                    </button>
-                    <div class="modal-body text-center">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal5Label">Locked Safe</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-key"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div>
-                                    <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/safe.png" alt="" />
-                                    <!-- Portfolio Modal - Text-->
-                                    <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                                    <button class="btn btn-primary" data-dismiss="modal">
-                                        <i class="fas fa-times fa-fw"></i>
-                                        Close Window
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio Modal 6-->
-        <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-labelledby="portfolioModal6Label" aria-hidden="true">
-            <div class="modal-dialog modal-xl" role="document">
-                <div class="modal-content">
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                    </button>
-                    <div class="modal-body text-center">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0" id="portfolioModal6Label">Submarine</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-key"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div>
-                                    <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/submarine.png" alt="" />
-                                    <!-- Portfolio Modal - Text-->
-                                    <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                                    <button class="btn btn-primary" data-dismiss="modal">
-                                        <i class="fas fa-times fa-fw"></i>
-                                        Close Window
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
         <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
