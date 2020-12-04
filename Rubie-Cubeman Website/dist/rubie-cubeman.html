@@ -140,7 +140,7 @@
                         <!-- Randomize Rotations -->
                         <div class="row justify-content-center">
                             <div class="btn-group justify-content-center">
-                            <button type="button" class="btn btn-primary mt-3 mb-1" onclick="history.go(0);"><i class="fas fa-random"></i></button>
+                            <button type="button" class="btn btn-primary mt-3 mb-1" onclick="randMoves();"><i class="fas fa-random"></i></button>
                             </div>
                         </div>
 
@@ -236,7 +236,7 @@
                               <button class="dropdown-item btn" type="button" id="num7a0"  onclick="seta0(7)"> 7</button> 
                               <button class="dropdown-item btn" type="button" id="num8a0"  onclick="seta0(8)"> 8</button> 
                               <button class="dropdown-item btn" type="button" id="num9a0"  onclick="seta0(9)"> 9</button>
-                              <button class="dropdown-item btn font-weight-bold" type="button" id=""  onclick=""> <i class="fas fa-random"></i></button>
+                              <button class="dropdown-item btn font-weight-bold" type="button" id=""  onclick="randa0()"> <i class="fas fa-random"></i></button>
                             </div>
                           </div>
                             <div class="dropdown mt-2"> 
@@ -253,7 +253,7 @@
                                 <button class="dropdown-item btn" type="button" id="num7a1"  onclick="seta1(7)"> 7</button> 
                                 <button class="dropdown-item btn" type="button" id="num8a1"  onclick="seta1(8)"> 8</button> 
                                 <button class="dropdown-item btn" type="button" id="num9a1"  onclick="seta1(8)"> 9</button>
-                                <button class="dropdown-item btn font-weight-bold" type="button" id=""  onclick=""> <i class="fas fa-random"></i></button>
+                                <button class="dropdown-item btn font-weight-bold" type="button" id=""  onclick="randa1()"> <i class="fas fa-random"></i></button>
                             </div>
                           </div>
                     
@@ -278,11 +278,11 @@
                     <tbody>
                       <tr>
                         <th scope="row">Alice</th>
-                        <td> This is where Alice's cube moves go.</td>
+                        <td id="AliceCubeTable"> This is where Alice's cube moves go.</td>
                       </tr>
                       <tr>
                         <th scope="row">Bob</th>
-                        <td>This is where Bob's cube moves go.</td>
+                        <td id="BobCubeTable">This is where Bob's cube moves go.</td>
                       </tr>
                     </tbody>
                 </table>

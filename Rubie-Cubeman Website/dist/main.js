@@ -73,15 +73,21 @@ function dualAnimSwitchNodewise(first, second) {
 }
 
 function cubeExp(cube, seqA, seqB, expA, expB) {
+	var tableRow = document.getElementById(cube.domElement.parentElement.id + "Table");
+	
 	for (var i = 0; i < expA; i++) {
 		cube.twist(seqA);
+		//tableRow.innerHTML += "G"
 	}
 	for (var i = 0; i < expB; i++) {
 		cube.twist(seqB);
+		//tableRow.innerHTML += "H"
 	}
 }
 		
 function rubieCubeIt() {
+	//document.getElementById("AliceCubeTable").innerHTML = "";
+	//document.getElementById("BobCubeTable").innerHTML = "";
 	cubeExp(cube1, gComms, hComms, secrets[0], 0);
 
 	waitFor(_ => cube1.isTweening() == 9).then(_ => 
@@ -198,9 +204,19 @@ function cubeBksp() {
 	}
 }
 
+function randMoves() {
+	for (let i = len; i > 0; i--) {
+		cubeBksp();
+	}
+	var moves = cube1.PRESERVE_LOGO.replace("Ss", "Ff");
+	for (let i = 0; i < SEQ_LIM; i++) {
+		cubeinput(moves.charAt(Math.floor(Math.random() * moves.length)));
+	}
+}
+
 document.getElementById("submitH").onclick=function(){
     
-    if(confirmHHandler==true && len==SEQ_LIM){
+    if(confirmHHandler==true && len != 0){
         hComms = input1;
         input1='';
         confirmHHandler=false;
@@ -221,7 +237,7 @@ document.getElementById("submitH").onclick=function(){
 
 document.getElementById("submitG").onclick=function(){
     
-    if(confirmGHandler==true &&len==SEQ_LIM){
+    if(confirmGHandler==true && len != 0){
         gComms = input1;
         input1='';
         confirmGHandler=false;
@@ -251,6 +267,11 @@ function seta0(i){
     }
     
 }
+
+function randa0(){
+	seta0(Math.floor(Math.random() * 9) + 1);
+}
+
 function seta1(i){
     if(a1Listen==true){
         secrets[1]=i;
@@ -260,6 +281,10 @@ function seta1(i){
 		document.getElementById("dropdownMenuButtona1").disabled = true;
 		document.getElementById("dropdownMenuButtona1").innerHTML = "a <sub>1</sub>&nbsp;=&nbsp;" + i;
     }
+}
+
+function randa1(){
+	seta1(Math.floor(Math.random() * 9) + 1);
 }
 
 cube1.mouseControlsEnabled = false;
