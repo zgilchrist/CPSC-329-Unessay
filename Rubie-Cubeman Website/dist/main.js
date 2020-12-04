@@ -73,21 +73,23 @@ function dualAnimSwitchNodewise(first, second) {
 }
 
 function cubeExp(cube, seqA, seqB, expA, expB) {
-	var tableRow = document.getElementById(cube.domElement.parentElement.id + "Table");
+	var tableRow = document.getElementById(cube.domElement.id + "Table");
 	
 	for (var i = 0; i < expA; i++) {
 		cube.twist(seqA);
-		//tableRow.innerHTML += "G"
+		tableRow.innerHTML += "G";
 	}
+	tableRow.innerHTML += " ";
 	for (var i = 0; i < expB; i++) {
 		cube.twist(seqB);
-		//tableRow.innerHTML += "H"
+		tableRow.innerHTML += "H";
 	}
+	tableRow.innerHTML += " ";
 }
 		
 function rubieCubeIt() {
-	//document.getElementById("AliceCubeTable").innerHTML = "";
-	//document.getElementById("BobCubeTable").innerHTML = "";
+	document.getElementById("cube1Table").innerHTML = "";
+	document.getElementById("cube2Table").innerHTML = "";
 	cubeExp(cube1, gComms, hComms, secrets[0], 0);
 
 	waitFor(_ => cube1.isTweening() == 9).then(_ => 
@@ -151,11 +153,13 @@ var container1 = document.querySelector('#AliceCube');
 cube1 = new ERNO.Cube();
 light = new Photon.Light(10,0,100);
 container1.appendChild(cube1.domElement);
+cube1.domElement.id = "cube1";
 
 var container2 = document.querySelector('#BobCube');
 cube2 = new ERNO.Cube();
 light = new Photon.Light(10,0,100);
 container2.appendChild(cube2.domElement);
+cube2.domElement.id = "cube2";
 
 var hComms='',gComms='';
 var confirmHHandler = true,confirmGHandler=true ;
@@ -269,7 +273,7 @@ function seta0(i){
 }
 
 function randa0(){
-	seta0(Math.floor(Math.random() * 9) + 1);
+	seta0(Math.floor(Math.random() * 8) + 1);
 }
 
 function seta1(i){
