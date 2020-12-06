@@ -12,7 +12,7 @@ function wait(waitTime, nextFunc, arg) {
 function waitFor(conditionFunction) {
   const poll = resolve => {
     if(conditionFunction()) resolve();
-    else setTimeout(_ => poll(resolve), 400);
+    else setTimeout(_ => poll(resolve), 50);
   }
 
   return new Promise(poll);
@@ -86,50 +86,66 @@ function cubeExp(cube, seqA, seqB, expA, expB) {
 	}
 	tableRow.innerHTML += " ";
 }
+
+function twistG(cube, expA, expB, nextFunc, arg) {
+	if (expA == 0) twistH(cube, expB, nextFunc, arg);
+	else {
+		cube.twist(gComms);
+		waitFor(_ => cube.isTweening() == 9).then(_ => 
+		waitFor(_ => cube.isTweening() == 0).then(_ => 
+		{
+			expA--;
+			document.getElementById(cube.domElement.id + "Table").innerHTML += "G";
+			twistG(cube, expA, expB, nextFunc, arg);
+		}));
+	}
+}
+
+function twistH(cube, expB, nextFunc, arg) {
+	if (expB == 0) { 
+		document.getElementById(cube.domElement.id + "Table").innerHTML += " ";
+		wait(WAIT_TIME, nextFunc, arg);
+	}
+	else {
+		cube.twist(hComms);
+		waitFor(_ => cube.isTweening() == 9).then(_ => 
+		waitFor(_ => cube.isTweening() == 0).then(_ => 
+		{
+			expB--;
+			document.getElementById(cube.domElement.id + "Table").innerHTML += "H";
+			twistH(cube, expB, nextFunc, arg);
+		}));
+	}
+}
 		
 function rubieCubeIt() {
 	document.getElementById("cube1Table").innerHTML = "";
 	document.getElementById("cube2Table").innerHTML = "";
-	cubeExp(cube1, gComms, hComms, secrets[0], 0);
-
-	waitFor(_ => cube1.isTweening() == 9).then(_ => 
-	waitFor(_ => cube1.isTweening() == 0).then(_ => wait(WAIT_TIME, animA)));
+	twistG(cube1, secrets[0], 0, animA);
 }
 
 function animA() {
 	dualAnimSwitchNaive();
-	cubeExp(cube2, gComms, hComms, secrets[2], 0);
-	
-	waitFor(_ => cube2.isTweening() == 9).then(_ => 
-	waitFor(_ => cube2.isTweening() == 0).then(_ => wait(WAIT_TIME, cubeFadeOut, animB)));
+	twistG(cube2, secrets[2], 0, cubeFadeOut, animB);
 }
 
 
 function animB() {
-	cubeExp(cube2, gComms, hComms, secrets[0], secrets[1]);
-	
-	waitFor(_ => cube2.isTweening() == 9).then(_ => 
-	waitFor(_ => cube2.isTweening() == 0).then(_ => wait(WAIT_TIME, animC)));
+	twistG(cube2, secrets[0], secrets[1], animC);
 }
 
 function animC() {
 	dualAnimSwitchNaive();
-	cubeExp(cube1, gComms, hComms, secrets[2], secrets[3]);
-	
-	waitFor(_ => cube1.isTweening() == 9).then(_ => 
-	waitFor(_ => cube1.isTweening() == 0).then(_ => wait(WAIT_TIME, cubeFadeOut, animD)));
+	twistG(cube1, secrets[2], secrets[3], cubeFadeOut, animD);
 }
 
 function animD() {
-	cubeExp(cube1, gComms, hComms, 0, secrets[1]);
-	
-	waitFor(_ => cube1.isTweening() == 9).then(_ => 
-	waitFor(_ => cube1.isTweening() == 0).then(_ => wait(WAIT_TIME, animE)));
+	twistG(cube1, 0, secrets[1], animE);
 }
 
 function animE() {
 	dualAnimSwitchNaive();
-	cubeExp(cube2, gComms, hComms, 0, secrets[3]);
+	twistG(cube2, 0, secrets[3]);
 }
 
 function transition() {
