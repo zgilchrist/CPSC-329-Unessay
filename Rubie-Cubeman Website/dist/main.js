@@ -1,23 +1,69 @@
-const SEQ_LIM = 5;
-const EXP_LIM = 1;
-const TWIST_TIME = 100;
-const WAIT_TIME = 500;
+/**
+ * Backend functionality for the Rubie-Cubeman educational web application.
+ *
+ * This file contains the code responsible for handling input from and 
+ * outputting to the web-based Rubie-Cubeman demonstration. The program begins
+ * by defining some global variables and inserting two Cuber Rubik's cubes into
+ * the HTML. Properties of these cubes are also set before the entirely event
+ * driven phase is entered. On input of twists 
+ * 
+ * @author Adam Hiles
+ * @author Delara Shamanian Esfahani
+ * @since 06/12/2020
+ */
 
-/* CUBE RUNNING SEQUENCE */
+const SEQ_LIM = 5;			//Limit of twists in G & H
+const TWIST_TIME = 100;		//Global time for Cuber twists
+const WAIT_TIME = 500;		//Global time for 
 
+//========TIMEOUT-BASED WAIT FUNCTIONS=========================================================================================================================
+
+/**
+ * Waits for a given amount of time then runs a function.
+ *
+ * This function uses setTimeout to wait for the amount of time provided by the
+ * caller. After this pause it will continue to the caller defined function, 
+ * passing through one additional argument to that argument if provided.
+ *
+ * @param 	{int}		waitTime	the time to wait in milliseconds.
+ * @param 	{function}  nextFunc	the function to call after the wait.
+ * @param 	{unknown}	arg			argument to provide to nextFunc.
+ */
 function wait(waitTime, nextFunc, arg) {
 	setTimeout(() => nextFunc(arg), waitTime);
 }
 
-function waitFor(conditionFunction) {
-  const poll = resolve => {
-    if(conditionFunction()) resolve();
-    else setTimeout(_ => poll(resolve), 50);
+/**
+ * Continually checks for a condition to become true.
+ *
+ * This function returns a promise to the caller set to resolve if the provided
+ * condition is true. If the condition is not true, the resolution function 
+ * will wait for 50 ms before calling itself. The result is that the promise
+ * continually checks for condition to be true in order to resolve itself atan
+ * 50 ms intervals idefinitely.
+ *
+ * @param 	{function}	condition	condition by which the promise resolves.
+ * @return	{Promise}	a promise that resolve on a true condition
+ */
+function waitFor(condition) {
+  const poll = resolve => {						//Resolution function for the promise
+    if (condition()) resolve();			//Will resolve if condition is met
+    else setTimeout(_ => poll(resolve), 50);	//If not will check again for a resolution in 50 ms
   }
 
-  return new Promise(poll);
+  return new Promise(poll);						//Promise is returned to caller with the defined resolution function
 }		
 
+//========CUBE SWAPPING========================================================================================================================================
+
+/**
+ * 
+ *
+ *
+ *
+ *
+ *
+ */
 function cubeFadeIn(nextFunc) {
 	var opac = 0;
 	cube1.domElement.style.opacity = opac;
@@ -72,20 +118,7 @@ function dualAnimSwitchNodewise(first, second) {
 	
 }
 
-function cubeExp(cube, seqA, seqB, expA, expB) {
-	var tableRow = document.getElementById(cube.domElement.id + "Table");
-	
-	for (var i = 0; i < expA; i++) {
-		cube.twist(seqA);
-		tableRow.innerHTML += "G";
-	}
-	tableRow.innerHTML += " ";
-	for (var i = 0; i < expB; i++) {
-		cube.twist(seqB);
-		tableRow.innerHTML += "H";
-	}
-	tableRow.innerHTML += " ";
-}
+//========TWIST HANDLERS=======================================================================================================================================
 
 function twistG(cube, expA, expB, nextFunc, arg) {
 	if (expA == 0) twistH(cube, expB, nextFunc, arg);
@@ -117,7 +150,9 @@ function twistH(cube, expB, nextFunc, arg) {
 		}));
 	}
 }
-		
+	
+//========MAIN ANIMATION CHAIN=================================================
+	
 function rubieCubeIt() {
 	document.getElementById("cube1Table").innerHTML = "";
 	document.getElementById("cube2Table").innerHTML = "";
@@ -145,8 +180,10 @@ function animD() {
 
 function animE() {
 	dualAnimSwitchNaive();
-	twistG(cube2, 0, secrets[3]);
+	twistG(cube2, 0, secrets[3], console.log, "Ding!");
 }
+
+//========TRANSITION FROM INPUT TO ANIMATION===================================================================================================================
 
 function transition() {
 	secrets[2] = Math.floor(Math.random() * 8) + 1;
@@ -158,6 +195,10 @@ function transition() {
 	console.log("b1: " + secrets[3]);
 	
 	wait(WAIT_TIME, rubieCubeIt);
+}
+
+function inputCheck() {
+	if (confirmGHandler == false && confirmHHandler == false && a1Listen == false && a0Listen == false) transition();
 }
 
 
@@ -249,6 +290,7 @@ document.getElementById("submitH").onclick=function(){
 				document.getElementById("Button" + i).disabled = true;
 				document.getElementById("Bksp").disabled = true;
 			}
+			inputCheck();
 		} else {
 			document.getElementById("Gvalue").innerHTML = "Print G values";
 		}
@@ -270,6 +312,7 @@ document.getElementById("submitG").onclick=function(){
 				document.getElementById("Button" + i).disabled = true;
 				document.getElementById("Bksp").disabled = true;
 			}
+			inputCheck();
 		} else {
 			document.getElementById("Hvalue").innerHTML = "Print H values";
 		}
@@ -284,6 +327,7 @@ function seta0(i){
 		
 		document.getElementById("dropdownMenuButtona0").disabled = true;
 		document.getElementById("dropdownMenuButtona0").innerHTML = "a <sub>o</sub>&nbsp;=&nbsp;" + i;
+		inputCheck();
     }
     
 }
@@ -300,6 +344,7 @@ function seta1(i){
 		
 		document.getElementById("dropdownMenuButtona1").disabled = true;
 		document.getElementById("dropdownMenuButtona1").innerHTML = "a <sub>1</sub>&nbsp;=&nbsp;" + i;
+		inputCheck();
     }
 }
 
@@ -314,5 +359,3 @@ cube2.keyboardControlsEnabled = false;
 cube1.twistDuration = TWIST_TIME;
 cube2.twistDuration = TWIST_TIME / 20;
 cube2.paused = true;
-
-waitFor(_ => (confirmGHandler == false && confirmHHandler == false && a1Listen == false && a0Listen == false)).then(_ => transition());
