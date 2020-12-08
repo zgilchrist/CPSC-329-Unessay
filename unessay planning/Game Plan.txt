@@ -119,14 +119,25 @@ ALL: Write peer assessments and self assessments
 
 Site decisions/issues: added dec 7 2020 ZG
 
--Hyperlink to repo needs a new color
--Controls for the carousel? Yes/No?
--Description on bottom of home page
--Link back to home page from the cube
--how it works left justify bullet points
--subscript issues with the carousel
--readme good?
--cube moves ? button what does it do?
+-Hyperlink to repo needs a new color *DONE*
+-Controls for the carousel? Yes/No? No... *DONE*
+-Link back to home page from the cube *DONE*
+-subscript issues with the carousel *DONE*
+-Description on bottom of home page *DONE*
+-cube moves '?' ? button what does it do? *DONE*
+
+-proof read *Tania*
+-make shitty images for "How To" *Tania*
+-how it works left justify bullet points *Tania*
+-4 x 3 input keyboard *Tania*
+-fix size of carousel text boxes *Tania*
+-add home button on rubie-cubeman.html page *Tania*
+
+-finish documentation on Main.js *Adam*
+
+-readme good? *Zach*
+-increase length of time between carousel slides (total animation time) *Zach*
+-look into possibly linking carousel slides to events w/ ids & adding manual carousel slide buttons *Zach*
 
 
 
