@@ -14,7 +14,12 @@
 
 const SEQ_LIM = 5;			//Limit of twists in G & H
 const TWIST_TIME = 100;		//Global time for Cuber twists
-const WAIT_TIME = 500;		//Global time for 
+const WAIT_GOAL = 4000;		//Aim for time between the start of an animation 
+							//step and the user reading the whole associated
+							//tooltip
+const MIN_WAIT_TIME = 500;	//Minimum time to wait for the wait function
+const MIN_WAIT_WEIGHT = (WAIT_GOAL - MIN_WAIT_TIME) / TWIST_TIME; 
+//Weight for a guarenteed minimum pause time
 
 //========TIMEOUT-BASED WAIT FUNCTIONS=========================================================================================================================
 
@@ -29,7 +34,9 @@ const WAIT_TIME = 500;		//Global time for
  * @param 	{function}  nextFunc	the function to call after the wait.
  * @param 	{unknown}	arg			argument to provide to nextFunc.
  */
-function wait(waitTime, nextFunc, arg) {
+function wait(weight, nextFunc, arg) {
+	waitTime = WAIT_GOAL - (weight * TWIST_TIME);
+	if (waitTime < MIN_WAIT_TIME) waitTime = MIN_WAIT_TIME;
 	setTimeout(() => nextFunc(arg), waitTime);
 }
 
@@ -79,7 +86,7 @@ function cubeFadeIn(nextFunc) {
 		}
 	}
 	
-	waitFor(_ => cube1.domElement.style.opacity >= 1.0).then(_ => nextFunc());
+	waitFor(_ => cube1.domElement.style.opacity >= 1.0).then(_ => wait(MIN_WAIT_WEIGHT, nextFunc));
 }
 
 function cubeFadeOut(nextFunc) {
@@ -120,8 +127,12 @@ function dualAnimSwitchNodewise(first, second) {
 
 //========TWIST HANDLERS=======================================================================================================================================
 
-function twistG(cube, expA, expB, nextFunc, arg) {
-	if (expA == 0) twistH(cube, expB, nextFunc, arg);
+function weighSeq(expA, expB) {
+	return (expA * gComms.length) + (expB * hComms.length);
+}
+
+function twistG(cube, expA, expB, weight, nextFunc, arg) {
+	if (expA == 0) twistH(cube, expB, weight, nextFunc, arg);
 	else {
 		cube.twist(gComms);
 		waitFor(_ => cube.isTweening() == 9).then(_ => 
@@ -129,15 +140,15 @@ function twistG(cube, expA, expB, nextFunc, arg) {
 		{
 			expA--;
 			document.getElementById(cube.domElement.id + "Table").innerHTML += "G";
-			twistG(cube, expA, expB, nextFunc, arg);
+			twistG(cube, expA, expB, weight, nextFunc, arg);
 		}));
 	}
 }
 
-function twistH(cube, expB, nextFunc, arg) {
+function twistH(cube, expB, weight, nextFunc, arg) {
 	if (expB == 0) { 
 		document.getElementById(cube.domElement.id + "Table").innerHTML += " ";
-		wait(WAIT_TIME, nextFunc, arg);
+		wait(weight, nextFunc, arg);
 	}
 	else {
 		cube.twist(hComms);
@@ -146,7 +157,7 @@ function twistH(cube, expB, nextFunc, arg) {
 		{
 			expB--;
 			document.getElementById(cube.domElement.id + "Table").innerHTML += "H";
-			twistH(cube, expB, nextFunc, arg);
+			twistH(cube, expB, weight, nextFunc, arg);
 		}));
 	}
 }
@@ -158,35 +169,35 @@ $('#carouselCube').carousel({interval: false});
 function rubieCubeIt() {
 	document.getElementById("cube1Table").innerHTML = "";
 	document.getElementById("cube2Table").innerHTML = "";
-	twistG(cube1, secrets[0], 0, animA);
+	twistG(cube1, secrets[0], 0, weighSeq(secrets[0], 0), animA);
 	$('#carouselCube').carousel("next");
 }
 
 function animA() {
 	dualAnimSwitchNaive();
-	twistG(cube2, secrets[2], 0, cubeFadeOut, animB);
+	twistG(cube2, secrets[2], 0, weighSeq(secrets[2], 0), cubeFadeOut, animB);
 	$('#carouselCube').carousel("next");
 }
 
 function animB() {
-	twistG(cube2, secrets[0], secrets[1], animC);
+	twistG(cube2, secrets[0], secrets[1], weighSeq(secrets[0], secrets[1]), animC);
 	$('#carouselCube').carousel("next");
 }
 
 function animC() {
 	dualAnimSwitchNaive();
-	twistG(cube1, secrets[2], secrets[3], cubeFadeOut, animD);
+	twistG(cube1, secrets[2], secrets[3], weighSeq(secrets[2], secrets[3]), cubeFadeOut, animD);
 	$('#carouselCube').carousel("next");
 }
 
 function animD() {
-	twistG(cube1, 0, secrets[1], animE);
+	twistG(cube1, 0, secrets[1], weighSeq(0, secrets[1]), animE);
 	$('#carouselCube').carousel("next");
 }
 
 function animE() {
 	dualAnimSwitchNaive();
-	twistG(cube2, 0, secrets[3], done, "Ding!");
+	twistG(cube2, 0, secrets[3], weighSeq(0, secrets[3]), done, "Ding!");
 	$('#carouselCube').carousel("next");
 }
 function done() {
@@ -204,7 +215,7 @@ function transition() {
 	console.log("b0: " + secrets[2]);
 	console.log("b1: " + secrets[3]);
 	
-	wait(WAIT_TIME, rubieCubeIt);
+	wait(MIN_WAIT_WEIGHT, rubieCubeIt);
 }
 
 function inputCheck() {
