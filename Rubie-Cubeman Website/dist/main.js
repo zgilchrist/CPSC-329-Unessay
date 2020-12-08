@@ -152,35 +152,45 @@ function twistH(cube, expB, nextFunc, arg) {
 }
 	
 //========MAIN ANIMATION CHAIN=================================================
-	
+
+$('#carouselCube').carousel({interval: false});
+
 function rubieCubeIt() {
 	document.getElementById("cube1Table").innerHTML = "";
 	document.getElementById("cube2Table").innerHTML = "";
 	twistG(cube1, secrets[0], 0, animA);
+	$('#carouselCube').carousel("next");
 }
 
 function animA() {
 	dualAnimSwitchNaive();
 	twistG(cube2, secrets[2], 0, cubeFadeOut, animB);
+	$('#carouselCube').carousel("next");
 }
-
 
 function animB() {
 	twistG(cube2, secrets[0], secrets[1], animC);
+	$('#carouselCube').carousel("next");
 }
 
 function animC() {
 	dualAnimSwitchNaive();
 	twistG(cube1, secrets[2], secrets[3], cubeFadeOut, animD);
+	$('#carouselCube').carousel("next");
 }
 
 function animD() {
 	twistG(cube1, 0, secrets[1], animE);
+	$('#carouselCube').carousel("next");
 }
 
 function animE() {
 	dualAnimSwitchNaive();
-	twistG(cube2, 0, secrets[3], console.log, "Ding!");
+	twistG(cube2, 0, secrets[3], done, "Ding!");
+	$('#carouselCube').carousel("next");
+}
+function done() {
+	$('#carouselCube').carousel("next");
 }
 
 //========TRANSITION FROM INPUT TO ANIMATION===================================================================================================================
