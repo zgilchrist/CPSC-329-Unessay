@@ -117,6 +117,12 @@ Z: Add copyright to README field
 
 ALL: Write peer assessments and self assessments
 
+Site decisions/issues: added dec 7 2020 ZG
+
+Hyperlink to repo needs a new color
+-Controls for the carousel? Yes/No?
+-Description on bottom of home page
+-Link back to home page from the cube
 
 
 
