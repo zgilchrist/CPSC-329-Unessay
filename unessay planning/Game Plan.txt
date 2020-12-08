@@ -119,6 +119,9 @@ ALL: Write peer assessments and self assessments
 
 Site decisions/issues: added dec 7 2020 ZG
 
+
+** Finish by end of day Thursday, Dec 10th **
+
 -Hyperlink to repo needs a new color *DONE*
 -Controls for the carousel? Yes/No? No... *DONE*
 -Link back to home page from the cube *DONE*
@@ -137,7 +140,7 @@ Site decisions/issues: added dec 7 2020 ZG
 
 -readme good? *Zach*
 -increase length of time between carousel slides (total animation time) *Zach*
--look into possibly linking carousel slides to events w/ ids & adding manual carousel slide buttons *Zach*
+-[OPTIONAL] look into possibly linking carousel slides to events w/ ids & adding manual carousel slide buttons *Zach*
 
 
 
