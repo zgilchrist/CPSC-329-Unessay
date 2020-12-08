@@ -179,7 +179,7 @@
                                     <!-- Portfolio Modal - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/key.png" alt="" />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-5">Sample text here.</p>
+                                    <p class="mb-5">Before public-key cryptography existed, symmetric key cryptography had to be used which unfortunately relied upon the use of a trusted third party to share a private key between them. Now the problem here is that the initial key exchange is difficult to prove that it hasn’t been intercepted and thus, is hard to trust its legitimacy. Thus, we now enter asymmetric key exchanges which aimed to fix many of the existing problems with current forms of key exchange. </p>
                                     <button class="btn btn-primary" data-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
@@ -213,7 +213,12 @@
                                     <!-- Portfolio Modal - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/DH1.jpg" alt="" />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <p class="mb-5"><ul>
+                                        <li>Seen above is Ralph Merkle(left), Martin Hellman(centre), and Whitefield Diffie(right).</li>
+                                        <li>The Diffie-Hellman key exchange is a cryptographic asymmetric public key exchange that relies upon the use of shared secrets. </li>
+                                        <li>It was created out of need for select communication over computer networks without the large inconveniences of current symmetric key exchange protocols. It achieved this by establishing a shared secret over a public channel which can then encrypt all further communication with the key being used as a symmetric key cipher. </li>
+                                        <li>It was initially conceived by Ralph Merkle but was formally published by Diffie and Hellman in 1976. Hellman made a comment in 2002 that it should be renamed to Diffie-Hellman-Merkle for Merkle’s early contributions to the protocol. </li>
+                                    </ul></p>
                                     <button class="btn btn-primary" data-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
@@ -247,7 +252,16 @@
                                     <!-- Portfolio Modal - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/eavesdropper.png" alt="" />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <p class="mb-5"><ul>
+                                                        <li>Diffie-Hellman is a cryptographic symmetric public key exchange that relies upon the use of shared secrets.</li>
+                                                        <li>Say Alice and Bob want to send each other a message and they want to use a key exchange to keep their message safe. </li>
+                                                        <li>They each have a part that is secret and in private domain. Say a and b for Alice and Bob respectively. </li>
+                                                        <li>There exists a part of the key, a root, in the public domain which we can call g.</li>
+                                                        <li>Now, Alice and Bob combine their private secret a,b respectively with g to get ag, bg.</li>
+                                                        <li>They now exchange these new combinations with each other across the public domain. Such that a certain Eve could see it.</li>
+                                                        <li>With these combinations they now combine their own part of their secret they had originally to get abg.</li>
+                                                        <li>They now both have the same shared secret.</li>
+                                    </ul></p>
                                     <button class="btn btn-primary" data-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
@@ -281,7 +295,12 @@
                                     <!-- Portfolio Modal - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/rubie-cubeman.png" alt="" />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <p class="mb-5"><ul>
+                                        <li>Rubie-Cubeman is a new tool for describing these relationships of Diffie-Hellman but in a simplified and interactive manner that makes it a great educational tool. It is being developed by Dr. Ryan Henry for a new paper he is writing.</li>
+                                        <li>The Rubik’s cube is used as an analog for the complex mathematical sequences of Diffie-Hellman by giving it states that Alice and Bob can both reach with different sets of rotations. The cubes on this site are designed to demonstrate these principles. </li>
+                                        <li>It is important to note that the cubes can be extrapolated far beyond the complexity of the 3x3 cube shown here. To generate some actual resistance to a brute force one could use a 100x100 or 1000x1000 for example. This is analogous to increasing cryptographic constructions and security parameters. </li>
+                                        <li>Additionally, in the paper there are one-way functions that are described that include Binary Rubik’s Exponentiation and Baby-twist/Giant Twists that would also significantly increase the security against an attack. They are complex, mathematically intensive functions. </li>
+                                    </ul></p>
                                     <button class="btn btn-primary" data-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
@@ -315,7 +334,15 @@
                                     <!-- Portfolio Modal - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/ryan-cube.png" alt="" />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <p class="mb-5"><ul>
+                                        <li>Both Alice and Bob start with a solved cube.</li>
+                                        <li>Alice and Bob now make twists in the cube that are separate and random from each other. The sequences are made a secret amount of times for each person.</li>
+                                        <li>The cubes are now exchanged. An eavesdropper could see this interaction and what the cubes look like in this state but not the twists to get to that state. </li>
+                                        <li>They now each take the cube they exchanged from the other person and apply that same sequence to that cube that they did earlier to the first cube. They make a secret number of these twists as well.  </li>
+                                        <li>They are exchanged once again and also as before viewable by an eavesdropper during the exchange. </li>
+                                        <li>Now each of them applies the second set of twists to the cubes again the secret amount of times again. </li>
+                                        <li>Now each of the cubes will have identical configurations resulting in a shared secret between Alice and Bob while Eve cannot know what this looks like as no exchanges happened since the last one.</li>
+                                    </ul></p>
                                     <button class="btn btn-primary" data-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
@@ -349,7 +376,7 @@
                                     <!-- Portfolio Modal - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cubemoves.PNG" alt="" />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <p class="mb-5">Seen above is the notation used for the twists that Rubik’s cubes use to move. </p>
                                     <button class="btn btn-primary" data-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
