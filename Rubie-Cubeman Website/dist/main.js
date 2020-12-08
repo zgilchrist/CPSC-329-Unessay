@@ -258,32 +258,34 @@ function twistsToString(moveSet) {
 }
 
 function cubeinput(c){
-	if(len<SEQ_LIM){
-		input1=input1+c;
-		console.log(input1);
-		len++;
+	if(len == 0) toggleLowerLimitKeys();
+	else if (len == SEQ_LIM - 1) toggleUpperLimitKeys();
 		
-		if (confirmHHandler) document.getElementById("Hvalue").innerHTML = twistsToString(input1);
-		if (confirmGHandler) document.getElementById("Gvalue").innerHTML = twistsToString(input1);
-	}
-    
+	input1=input1+c;
+	console.log(input1);
+	len++;
+	
+	if (confirmHHandler) document.getElementById("Hvalue").innerHTML = twistsToString(input1);
+	if (confirmGHandler) document.getElementById("Gvalue").innerHTML = twistsToString(input1);
 }
 
 function cubeBksp() {
-	if (len > 0) {
-		input1 = input1.slice(0, -1);
-		console.log(input1);
-		len--
+	if (len == 1) toggleLowerLimitKeys();
+	else if (len == SEQ_LIM) toggleUpperLimitKeys();
 		
-		if (len == 0) {
-			if (confirmHHandler) document.getElementById("Hvalue").innerHTML = "Print H values";
-			if (confirmGHandler) document.getElementById("Gvalue").innerHTML = "Print G values";
-		}
-		else {
-			if (confirmHHandler) document.getElementById("Hvalue").innerHTML = twistsToString(input1);
-			if (confirmGHandler) document.getElementById("Gvalue").innerHTML = twistsToString(input1);
-		}
+	input1 = input1.slice(0, -1);
+	console.log(input1);
+	len--
+	
+	if (len == 0) {
+		if (confirmHHandler) document.getElementById("Hvalue").innerHTML = "Print H values";
+		if (confirmGHandler) document.getElementById("Gvalue").innerHTML = "Print G values";
 	}
+	else {
+		if (confirmHHandler) document.getElementById("Hvalue").innerHTML = twistsToString(input1);
+		if (confirmGHandler) document.getElementById("Gvalue").innerHTML = twistsToString(input1);
+	}
+	
 }
 
 function randMoves() {
@@ -293,6 +295,18 @@ function randMoves() {
 	var moves = cube1.PRESERVE_LOGO.replace("Ss", "Ff");
 	for (let i = 0; i < SEQ_LIM; i++) {
 		cubeinput(moves.charAt(Math.floor(Math.random() * moves.length)));
+	}
+}
+
+function toggleLowerLimitKeys() {
+	document.getElementById("Bksp").disabled ^= true;
+	if (confirmHHandler) document.getElementById("submitH").disabled ^= true;
+	if (confirmGHandler) document.getElementById("submitG").disabled ^= true;
+}
+
+function toggleUpperLimitKeys() {
+	for (let i = 0; i < 12; i++) {
+		document.getElementById("Button" + i).disabled ^= true;
 	}
 }
 
