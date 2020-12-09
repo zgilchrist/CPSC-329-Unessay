@@ -117,12 +117,8 @@ function swapCubes(nextFunc) {
 }
 
 function dualAnimSwitchNaive() {
-	cube1.paused = !cube1.paused;
-	cube2.paused = !cube2.paused;
-}
-
-function dualAnimSwitchNodewise(first, second) {
-	
+	cube1.paused ^= true;
+	cube2.paused ^= true;
 }
 
 //========TWIST HANDLERS=======================================================================================================================================
@@ -246,6 +242,9 @@ var len = 0;
 var a0Listen=true ,a1Listen=true;
 var secrets = [];
 
+document.getElementById("submitH").disabled = true;
+document.getElementById("submitG").disabled = true;
+
 function twistsToString(moveSet) {
 	fMoveSet = "";
 	for (twist of moveSet) {
@@ -317,6 +316,11 @@ document.getElementById("submitH").onclick=function(){
         input1='';
         confirmHHandler=false;
         console.log("H: " + hComms);
+		
+		if (len == SEQ_LIM) {
+			toggleLowerLimitKeys();
+			toggleUpperLimitKeys();
+		}
         len=0;
 		
 		document.getElementById("submitH").disabled = true;
@@ -339,6 +343,11 @@ document.getElementById("submitG").onclick=function(){
         input1='';
         confirmGHandler=false;
         console.log("G: " + gComms);
+		
+		if (len == SEQ_LIM) {
+			toggleLowerLimitKeys();
+			toggleUpperLimitKeys();
+		}
         len=0;
 		
 		document.getElementById("submitG").disabled = true;
