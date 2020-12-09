@@ -244,6 +244,7 @@ var secrets = [];
 
 document.getElementById("submitH").disabled = true;
 document.getElementById("submitG").disabled = true;
+document.getElementById("Bksp").disabled = true;
 
 function twistsToString(moveSet) {
 	fMoveSet = "";
@@ -317,8 +318,8 @@ document.getElementById("submitH").onclick=function(){
         confirmHHandler=false;
         console.log("H: " + hComms);
 		
+		toggleLowerLimitKeys();
 		if (len == SEQ_LIM) {
-			toggleLowerLimitKeys();
 			toggleUpperLimitKeys();
 		}
         len=0;
@@ -327,8 +328,9 @@ document.getElementById("submitH").onclick=function(){
 		if (confirmGHandler == false) {
 			for (let i = 0; i < 12; i++) {
 				document.getElementById("Button" + i).disabled = true;
-				document.getElementById("Bksp").disabled = true;
 			}
+			
+			document.getElementById("rand").disabled = true;
 			inputCheck();
 		} else {
 			document.getElementById("Gvalue").innerHTML = "Print G values";
@@ -344,8 +346,8 @@ document.getElementById("submitG").onclick=function(){
         confirmGHandler=false;
         console.log("G: " + gComms);
 		
+		toggleLowerLimitKeys();
 		if (len == SEQ_LIM) {
-			toggleLowerLimitKeys();
 			toggleUpperLimitKeys();
 		}
         len=0;
@@ -354,8 +356,9 @@ document.getElementById("submitG").onclick=function(){
 		if (confirmHHandler == false) {
 			for (let i = 0; i < 12; i++) {
 				document.getElementById("Button" + i).disabled = true;
-				document.getElementById("Bksp").disabled = true;
 			}
+			
+			document.getElementById("rand").disabled = true;
 			inputCheck();
 		} else {
 			document.getElementById("Hvalue").innerHTML = "Print H values";
