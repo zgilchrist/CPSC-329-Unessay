@@ -40,6 +40,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/Rubie-Cubeman Website/dist/index.html"><i class="fas fa-home"></i> Home </a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">Cube</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Table</a></li>
                     </ul>
@@ -56,7 +57,7 @@
 
                     <!-- Bob's Section-->
                     
-                    <div class="col-lg-4 ml-auto text-center">
+                    <div class="col-lg-4 mt-4 ml-auto text-center">
 
                         <!-- Bob's Heading-->
                         <div class="row justify-content-center mt-3">
@@ -111,8 +112,8 @@
                     <div class="col-lg-4 mx-auto text-center">
 
                         <!-- Carousel Scripts -->
-                        <div id="carouselCube" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
+                        <div id="carouselCube" class="carousel slide mt-5" data-ride="carousel">
+                            <div class="carousel-inner" role="listbox" style="width:100%; height: 125px !important;">
                                 <div class="carousel-item active">
                                     <div class="alert alert-success">
                                     <strong>Step 1:</strong> Both cubes start in a solved state. Please select movesets for Alice's cube and <strong>[a <sub>0</sub>&nbsp;, a <sub>1</sub>&nbsp;]</strong> values for Alice.</div>
@@ -160,61 +161,68 @@
                         
                         <!--  H & G -->
                         
-                        <!-- H Input Field -->
-                        <div class ="row justify-content-center mb-3">
+                        <!-- H Field Input -->
+                        <div class ="row justify-content-center mt-5 mb-3">
                             <div class="col-md-1 text-center p-2 bg-gray border rounded-left">H</div>
                             <div class="col-md-7 text-left p-2 bg-light border rounded-right" id="Hvalue"> Print H values </div>
                             <button type="button" class="col-md-2 text-center btn btn-primary ml-2 p-2" id="submitH">Submit</button>
                             </div>
 
-                        <!-- G Input Field -->
-                        <div class ="row justify-content-center mb-3">
+                        <!-- G Field Input -->
+                        <div class ="row justify-content-center mb-5">
                             <div class="col-md-1 text-center p-2 bg-gray border rounded-left">G</div>
                             <div class="col-md-7 text-left p-2 bg-light border rounded-right" id="Gvalue"> Print G values </div>
                             <button type="button" class="col-md-2 text-center btn btn-primary ml-2 p-2" id="submitG">Submit</button>
                             </div>
  
                     
-                        <!--  Input Buttons -->
+                        <!--  H & G Field Input Buttons -->
 
-                        <!-- Randomize Rotations -->
-                        <div class="row justify-content-center">
-                            <div class="btn-group justify-content-center">
-                            <button type="button" class="btn btn-primary mt-3 mb-1" id="rand" onclick="randMoves();"><i class="fas fa-random"></i></button>
-                            </div>
-                        </div>
-
-                        <!-- Clockwise Rotations -->
                         <div class="row justify-content-center mb-1">
-                        <div class="btn-group justify-content-center" role="group" aria-label="First group">
-                            <button type="button" class="btn btn-primary" id="Button0" onclick="cubeinput('F')">F</button>
+
+                        <!-- F to L Buttons-->
+                        <div class="btn-group-vertical justify-content-center" role="group" aria-label="First group">
+                             <button type="button" class="btn btn-primary" id="Button0" onclick="cubeinput('F')">F</button>
                             <!-- <button type="button" class="btn btn-primary" id="Button1">S</button> -->
                             <button type="button" class="btn btn-primary" id="Button1" onclick="cubeinput('B')">B</button>
-                            <button type="button" class="btn btn-primary" id="Button2" onclick="cubeinput('L')">L</button>
-                            <!-- <button type="button" class="btn btn-primary" id="Button4">M</button> -->
+                            <button type="button" class="btn btn-primary" id="Button2" onclick="cubeinput('L')">L</button> 
+                        </div>
+                        
+
+                        <!-- Fi to Li Buttons -->
+                        <div class="btn-group-vertical justify-content-center" role="group" aria-label="First group">
+                            <button type="button" class="btn btn-primary" id="Button6" onclick="cubeinput('f')">Fi</button> 
+                            <!-- <button type="button" class="btn btn-primary" id="Button10">s</button> -->
+                            <button type="button" class="btn btn-primary" id="Button7" onclick="cubeinput('b')">Bi</button>
+                            <button type="button" class="btn btn-primary" id="Button8" onclick="cubeinput('l')">Li</button> 
+                        </div>
+
+                        <!-- R to D Buttons -->
+                        <div class="btn-group-vertical justify-content-center" role="group" aria-label="First group">
+                             <!-- <button type="button" class="btn btn-primary" id="Button4">M</button> -->
                             <button type="button" class="btn btn-primary" id="Button3" onclick="cubeinput('R')">R</button>
                             <button type="button" class="btn btn-primary" id="Button4" onclick="cubeinput('U')">U</button>
                             <!-- <button type="button" class="btn btn-primary" id="Button7">E</button> -->
                             <button type="button" class="btn btn-primary" id="Button5" onclick="cubeinput('D')">D</button>
-                            <button type="button" class="btn btn-primary" id="Bksp" onclick="cubeBksp()"><i class="fas fa-backspace"></i></button>
-                          </div>
                         </div>
-                        
-                        <!-- Counter-Clockwise Rotations -->
-                        <div class="row justify-content-center">
-                        <div class="btn-group justify-content-center" role="group" aria-label="First group">
-                            <button type="button" class="btn btn-primary" id="Button6" onclick="cubeinput('f')">Fi</button>
-                            <!-- <button type="button" class="btn btn-primary" id="Button10">s</button> -->
-                            <button type="button" class="btn btn-primary" id="Button7" onclick="cubeinput('b')">Bi</button>
-                            <button type="button" class="btn btn-primary" id="Button8" onclick="cubeinput('l')">Li</button>
+
+                        <!-- Ri to Di Buttons -->
+                        <div class="btn-group-vertical justify-content-center" role="group" aria-label="First group">
                             <!-- <button type="button" class="btn btn-primary" id="Button13">m</button> -->
                             <button type="button" class="btn btn-primary" id="Button9" onclick="cubeinput('r')">Ri</button>
-                            <button type="button" class="btn btn-primary" id="Button10" onclick="cubeinput('u')">Ui</button>
+                            <button type="button" class="btn btn-primary" id="Button10" onclick="cubeinput('u')">Ui</button> 
                             <!-- <button type="button" class="btn btn-primary" id="Button11">e</button> -->
                             <button type="button" class="btn btn-primary" id="Button11" onclick="cubeinput('d')">Di</button>
-                            <button type="button" class="btn btn-primary font-weight-bold" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-question"></i></button>
-                          </div>
                         </div>
+
+                        <!-- Bkspc, Randomize, and Help Buttons-->
+                        <div class="btn-group-vertical justify-content-center" role="group" aria-label="First group">
+                            <button type="button" class="btn btn-primary" id="Bksp" onclick="cubeBksp()"><i class="fas fa-backspace"></i></button>
+                            <button type="button" class="btn btn-primary" id="rand" onclick="randMoves();"><i class="fas fa-random"></i></button>
+                            <button type="button" class="btn btn-primary font-weight-bold" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-question"></i></button>
+                        </div>
+                        </div>
+                        
                         
                           <!-- Cube Move Instructions -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -248,7 +256,7 @@
                     </div>
 
                     <!-- Alice's Section -->
-                    <div class="col-lg-4 mr-auto text-center">
+                    <div class="col-lg-4 mt-4 mr-auto text-center">
 
                         <!-- Alice's Heading-->
                         <h1 class="page-section-heading text-center text-uppercase text-primary mt-3">Alice</h1>

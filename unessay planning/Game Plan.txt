@@ -131,10 +131,10 @@ Site decisions/issues: added dec 7 2020 ZG
 
 -proof read *Tania*
 -make shitty images for "How To" *Tania*
--how it works left justify bullet points *Tania*
--4 x 3 input keyboard *Tania*
--fix size of carousel text boxes *Tania*
--add home button on rubie-cubeman.html page *Tania*
+-how it works left justify bullet points *Tania* *DONE*
+-4 x 3 input keyboard *Tania* *DONE*
+-fix size of carousel text boxes *Tania* *DONE*
+-add home button on rubie-cubeman.html page *Tania* *DONE*
 
 -finish documentation on Main.js *Adam*
 
