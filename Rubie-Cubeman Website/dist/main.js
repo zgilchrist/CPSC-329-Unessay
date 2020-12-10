@@ -24,7 +24,7 @@ const MIN_WAIT_WEIGHT = (WAIT_GOAL - MIN_WAIT_TIME) / TWIST_TIME;
 //========TIMEOUT-BASED WAIT FUNCTIONS=========================================================================================================================
 
 /**
- * Waits for a given amount of time then runs a function.
+ * Waits for a weighted amount of time before running a function.
  *
  * This function uses setTimeout to wait for the amount of time provided by the
  * caller. After this pause it will continue to the caller defined function, 
@@ -214,191 +214,48 @@ function transition() {
 	wait(MIN_WAIT_WEIGHT, rubieCubeIt);
 }
 
+/**
+ * Checks if input phase is completed so that the demonstration can move on.
+ *
+ * Checks if all input booleans are false, transitioning to the animation phase 
+ * if so.
+ *
+ * @param	none
+ * @return	none
+ */
 function inputCheck() {
 	if (confirmGHandler == false && confirmHHandler == false && a1Listen == false && a0Listen == false) transition();
 }
 
+//========INITIALIZATION=======================================================================================================================================
 
-
-
-
-
+//Creates and appends Alice's cube to the webpage
 var container1 = document.querySelector('#AliceCube');
 cube1 = new ERNO.Cube();
 light = new Photon.Light(10,0,100);
 container1.appendChild(cube1.domElement);
 cube1.domElement.id = "cube1";
 
+//Creates and appends Bob's cube to the webpage
 var container2 = document.querySelector('#BobCube');
 cube2 = new ERNO.Cube();
 light = new Photon.Light(10,0,100);
 container2.appendChild(cube2.domElement);
 cube2.domElement.id = "cube2";
 
-var hComms='',gComms='';
-var confirmHHandler = true,confirmGHandler=true ;
-var input1='';
-var len = 0;
-var a0Listen=true ,a1Listen=true;
-var secrets = [];
+var hComms = '', gComms = '';							//Strings for the G and H twist sets
+var confirmHHandler = true, confirmGHandler = true ;	//Booleans for if G and H still need to be set
+var input1 = '';										//Holds user input for G and H until confirmed
+var len = 0;											//Length of input1
+var a0Listen = true, a1Listen = true;					//Booleans for if a0 and a1 still need to be set
+var secrets = [];										//Array to hold a0, a1, b0, and b1
 
+//The submit for G and H and backspace buttons are initially disabled
 document.getElementById("submitH").disabled = true;
 document.getElementById("submitG").disabled = true;
 document.getElementById("Bksp").disabled = true;
 
-function twistsToString(moveSet) {
-	fMoveSet = "";
-	for (twist of moveSet) {
-		if (twist == twist.toLowerCase()) fMoveSet += twist.toUpperCase() + "i";
-		else fMoveSet += twist;
-		fMoveSet += " ";
-	}
-	
-	return fMoveSet;
-}
-
-function cubeinput(c){
-	if(len == 0) toggleLowerLimitKeys();
-	else if (len == SEQ_LIM - 1) toggleUpperLimitKeys();
-		
-	input1=input1+c;
-	console.log(input1);
-	len++;
-	
-	if (confirmHHandler) document.getElementById("Hvalue").innerHTML = twistsToString(input1);
-	if (confirmGHandler) document.getElementById("Gvalue").innerHTML = twistsToString(input1);
-}
-
-function cubeBksp() {
-	if (len == 1) toggleLowerLimitKeys();
-	else if (len == SEQ_LIM) toggleUpperLimitKeys();
-		
-	input1 = input1.slice(0, -1);
-	console.log(input1);
-	len--
-	
-	if (len == 0) {
-		if (confirmHHandler) document.getElementById("Hvalue").innerHTML = "Print H values";
-		if (confirmGHandler) document.getElementById("Gvalue").innerHTML = "Print G values";
-	}
-	else {
-		if (confirmHHandler) document.getElementById("Hvalue").innerHTML = twistsToString(input1);
-		if (confirmGHandler) document.getElementById("Gvalue").innerHTML = twistsToString(input1);
-	}
-	
-}
-
-function randMoves() {
-	for (let i = len; i > 0; i--) {
-		cubeBksp();
-	}
-	var moves = cube1.PRESERVE_LOGO.replace("Ss", "Ff");
-	for (let i = 0; i < SEQ_LIM; i++) {
-		cubeinput(moves.charAt(Math.floor(Math.random() * moves.length)));
-	}
-}
-
-function toggleLowerLimitKeys() {
-	document.getElementById("Bksp").disabled ^= true;
-	if (confirmHHandler) document.getElementById("submitH").disabled ^= true;
-	if (confirmGHandler) document.getElementById("submitG").disabled ^= true;
-}
-
-function toggleUpperLimitKeys() {
-	for (let i = 0; i < 12; i++) {
-		document.getElementById("Button" + i).disabled ^= true;
-	}
-}
-
-document.getElementById("submitH").onclick=function(){
-    
-    if(confirmHHandler==true && len != 0){
-        hComms = input1;
-        input1='';
-        confirmHHandler=false;
-        console.log("H: " + hComms);
-		
-		toggleLowerLimitKeys();
-		if (len == SEQ_LIM) {
-			toggleUpperLimitKeys();
-		}
-        len=0;
-		
-		document.getElementById("submitH").disabled = true;
-		if (confirmGHandler == false) {
-			for (let i = 0; i < 12; i++) {
-				document.getElementById("Button" + i).disabled = true;
-			}
-			
-			document.getElementById("rand").disabled = true;
-			inputCheck();
-		} else {
-			document.getElementById("Gvalue").innerHTML = "Print G values";
-		}
-    }
-}
-
-document.getElementById("submitG").onclick=function(){
-    
-    if(confirmGHandler==true && len != 0){
-        gComms = input1;
-        input1='';
-        confirmGHandler=false;
-        console.log("G: " + gComms);
-		
-		toggleLowerLimitKeys();
-		if (len == SEQ_LIM) {
-			toggleUpperLimitKeys();
-		}
-        len=0;
-		
-		document.getElementById("submitG").disabled = true;
-		if (confirmHHandler == false) {
-			for (let i = 0; i < 12; i++) {
-				document.getElementById("Button" + i).disabled = true;
-			}
-			
-			document.getElementById("rand").disabled = true;
-			inputCheck();
-		} else {
-			document.getElementById("Hvalue").innerHTML = "Print H values";
-		}
-    }
-}
-
-function seta0(i){
-    if(a0Listen==true){
-        secrets[0]=i;
-        a0Listen=false;
-        console.log("a0: " + secrets[0]);
-		
-		document.getElementById("dropdownMenuButtona0").disabled = true;
-		document.getElementById("dropdownMenuButtona0").innerHTML = "a <sub>o</sub>&nbsp;=&nbsp;" + i;
-		inputCheck();
-    }
-    
-}
-
-function randa0(){
-	seta0(Math.floor(Math.random() * 8) + 1);
-}
-
-function seta1(i){
-    if(a1Listen==true){
-        secrets[1]=i;
-        a1Listen=false;
-        console.log("a1: " + secrets[1]);
-		
-		document.getElementById("dropdownMenuButtona1").disabled = true;
-		document.getElementById("dropdownMenuButtona1").innerHTML = "a <sub>1</sub>&nbsp;=&nbsp;" + i;
-		inputCheck();
-    }
-}
-
-function randa1(){
-	seta1(Math.floor(Math.random() * 9) + 1);
-}
-
+//All user controls for the cube objects are disabled, their twist times are set, and Bob's cube's animation is paused
 cube1.mouseControlsEnabled = false;
 cube2.mouseControlsEnabled = false;
 cube1.keyboardControlsEnabled = false;
@@ -406,3 +263,265 @@ cube2.keyboardControlsEnabled = false;
 cube1.twistDuration = TWIST_TIME;
 cube2.twistDuration = TWIST_TIME / 20;
 cube2.paused = true;
+
+//========UTILITIES FOR ONCLICK EVENTS=========================================================================================================================
+
+/**
+ * Formats a string of twists to a reader friendly string of standard notation.
+ *
+ * For passing twist sequences to cube objects they need to be unspaced, 
+ * uppercase and lowercase characters in a string. For output to the user,
+ * this funciton formats such a sequence by spacing the twists and listing
+ * inverse moves (lowercase) as uppercase + i (e.x. "DBf" -> "D B Fi "). The
+ * formatted string is returned to the caller.
+ * 
+ * @param	{String}	moveSet	the twist string to format
+ * @return	{String}	the formatted version of moveSet
+ */
+function twistsToString(moveSet) {
+	fMoveSet = "";																	//String for the formatted moveset is initialized
+	for (twist of moveSet) {														//For each twist
+		if (twist == twist.toLowerCase()) fMoveSet += twist.toUpperCase() + "i";	//Lowercase twists are formatted as uppercase + i
+		else fMoveSet += twist;														//Uppercase twists are copied unformatted												
+		fMoveSet += " ";															//A space is added after each twist
+	}
+	
+	return fMoveSet;																//The formatted sequence is returned to the caller
+}
+
+/**
+ * Toggles buttons disabled at the lower limit of input len.
+ *
+ * The backspace and submit buttons for the twist inputs are disabled at 
+ * len = 0 and enabled otherwise. When len would change from or to zero this 
+ * function is called to toggle the DOM buttons being disabled.
+ *
+ * @param 	none
+ * @return	none
+ */
+function toggleLowerLimitKeys() {
+	document.getElementById("Bksp").disabled ^= true;							//Backspace's disabled is xor'd with true, toggling it
+	if (confirmHHandler) document.getElementById("submitH").disabled ^= true;	//The submit button for H is toggled only if it has not been submitted yet
+	if (confirmGHandler) document.getElementById("submitG").disabled ^= true;	//^ but for G
+}
+
+/**
+ * Toggles buttons disabled at the upper limit of input len
+ *
+ * Each button to input a twist should be disabled at len = SEQ_LIM and enabled
+ * otherwise. When len would change from or to SEQ_LIM this function is called
+ * to toggle the DOM twist buttons' disabled states
+ *
+ * @param 	none
+ * @return	none
+ */
+function toggleUpperLimitKeys() {
+	for (let i = 0; i < 12; i++) {
+		document.getElementById("Button" + i).disabled ^= true;	//Each twist button's disabled is xor'd with true, toggling it
+	}
+}
+
+/**
+ * Removes all twists from current input sequence with backspaces.
+ *
+ * This will loop through the current length of the input sequence and remove
+ * the last character each time by the backspace function, in order to clear 
+ * this sequence.
+ *
+ * @param 	none
+ * @return	none
+ */
+function clearInputSeq() {
+	for (let i = len; i > 0; i--) {	
+		cubeBksp();	//Each twist in the current input sequence is cleared with the backspace function
+	}
+}
+
+//========ONCLICK HANDLERS=====================================================================================================================================
+
+/**
+ * Handler for twist button onclick events.
+ *
+ * The onclick for the twist buttons is set to this funciton in the html with
+ * their corresponding twists (in Cuber notation) as the argument. When one of 
+ * these buttons is pressed its twist is appended to the current input sequence
+ * and the tracked length increases. The two preview fields are updated with 
+ * this new sequence formatted, as long as they have not been submitted. If 
+ * the length of the input will increase from zero the lower limit keys are
+ * toggled and the upper limit ones are if the length will increase to the 
+ * SEQ_LIM.
+ *
+ * @param	{String}	c	a Cuber twist
+ * @return	none
+ */
+function cubeinput(c) {
+	input1 = input1 + c;	//Input sequence is appended with the selected twist
+	console.log(input1);	//New sequence is printed to the console for debug
+	
+	if(len == 0) toggleLowerLimitKeys();					//If the length of input is being increased from zero the backspace and submit keys are toggled
+	else if (len == SEQ_LIM - 1) toggleUpperLimitKeys();	//If the length of the input is being increased to the upper limit the twist keys are toggled
+	len++;													//The length tracker increments
+	
+	if (confirmHHandler) document.getElementById("Hvalue").innerHTML = twistsToString(input1);	//If H has not been submitted the new input is formatted and set to its sequence box for preview
+	if (confirmGHandler) document.getElementById("Gvalue").innerHTML = twistsToString(input1);	//^ but for G
+}
+
+/**
+ * Handler for backspace on the twist input.
+ *
+ * When the backspace for the twist input is pressed, it will slice off the 
+ * last character in the input twist sequence. The preview fields are updated
+ * accordingly and buttons are toggled depending if the length of the input 
+ * is decrease from the maximum or to zero.
+ *
+ * @param	none
+ * @return	none
+ */
+function cubeBksp() {
+	input1 = input1.slice(0, -1);	//Last twist of the input sequence is sliced off
+	console.log(input1);			//New sequence is printed to the console for debug
+	
+	if (len == 1) toggleLowerLimitKeys();				//Lower limit keys are toggled if the length is decreasing to zero
+	else if (len == SEQ_LIM) toggleUpperLimitKeys();	//Upper limit keys are toggled if the length is decreasing from SEQ_LIM
+	len--												//The length tracker decrements
+	
+	if (len == 0) {	//If the length decreases to zero the H and G preview fields change to an input print
+		if (confirmHHandler) document.getElementById("Hvalue").innerHTML = "Print H values";	//H field is updated only if it has not been submitted
+		if (confirmGHandler) document.getElementById("Gvalue").innerHTML = "Print G values";	//^ for G
+	}
+	else {	//Otherwise the fields are updated with the new input sequence formatted
+		if (confirmHHandler) document.getElementById("Hvalue").innerHTML = twistsToString(input1);	//H field only updates if it has not been submitted
+		if (confirmGHandler) document.getElementById("Gvalue").innerHTML = twistsToString(input1);	//^ for G
+	}
+	
+}
+
+/**
+ * Handler for the twist input randomizer.
+ * 
+ * When the randomize button is pressed on the twist input keyboard it will
+ * change the input sequence to a random sequence of length SEQ_LIM. This is
+ * done using the twist input and backspace handlers so disabling and preview
+ * update functionality does not need to be repeated.
+ *
+ * @param	none
+ * @param	none
+ */
+function randMoves() {
+	clearInputSeq(); //The current input sequence is cleared
+	
+	var moves = cube1.PRESERVE_LOGO.replace("Ss", "Ff");	//The set of valid moves can be retreive from Cuber's PRESERVE_LOGO set, except with the slice twists replaced with the front face
+	for (let i = 0; i < SEQ_LIM; i++) {
+		cubeinput(moves.charAt(Math.floor(Math.random() * moves.length)));	//A random character from this set is added to the input sequence with the twist input function up to the sequence limit 
+	}
+}
+
+//Onclick handler for submitting the H sequence
+//@TODO combine submit H and submit G onclicks
+document.getElementById("submitH").onclick=function(){
+ 
+	hComms = input1;									//The input sequence becomes the H sequence
+	confirmHHandler = false;							//The H input boolean is set to false
+	document.getElementById("submitH").disabled = true; //The submit H button is disabled
+	clearInputSeq(); 									//The current input sequence is cleared
+	console.log("H: " + hComms);						//The final H sequence is printed to the console for debug
+	
+	if (confirmGHandler == false) {	//If the G boolean is false then twist input is complete
+		for (let i = 0; i < 12; i++) {
+			document.getElementById("Button" + i).disabled = true;	//Every twist input button is disabled
+		}
+		
+		document.getElementById("rand").disabled = true;	//The randomization button is disabled
+		inputCheck();										//Checks if all input is completed
+	} 
+}
+
+//Onclick handler for submitting the G sequence
+//@TODO combine submit H and submit G onclicks
+document.getElementById("submitG").onclick=function(){
+	
+	gComms = input1;									//The input sequence becomes the G sequence
+	confirmGHandler = false;							//The G input boolean is set to false
+	document.getElementById("submitG").disabled = true; //The submit G button is disabled
+	clearInputSeq();									//The current input sequence is cleared	
+	console.log("G: " + gComms);						//The final G sequence is printed to the console for debug
+	
+	if (confirmHHandler == false) {	//If the H boolean is false then twist input is complete
+		for (let i = 0; i < 12; i++) {
+			document.getElementById("Button" + i).disabled = true;	//Every twist input button is disabled
+		}
+		
+		document.getElementById("rand").disabled = true;	//The randomization button is disabled
+		inputCheck();										//Checks if all input is completed
+	} 
+}
+
+/**
+ * Handler for a0 dropdown onclicks.
+ *
+ * When a definite a0 value is selected from the dropdown menu a0 is set as
+ * that value. The menu is disabled and the a0 field is updated to reflect the
+ * change to the user.
+ *
+ * @param 	{int}	i	number to set a0 as
+ * @return	none
+ * @TODO	combine seta0 and seta1
+ */
+function seta0(i){
+	secrets[0] = i;						//The integer is set to the a0 place in the secrets array
+	a0Listen = false;					//The a0 input boolean is set to false
+	console.log("a0: " + secrets[0]);	//a0 is printed to the console for debug
+	
+	document.getElementById("dropdownMenuButtona0").disabled = true;	//The a0 dropdown menu is disabled
+	document.getElementById("dropdownMenuButtona0").innerHTML = "a <sub>o</sub>&nbsp;=&nbsp;" + i;	//The field of menu is updated with a0
+	inputCheck();	//Checks if all input is completed
+}
+
+/**
+ * Handler for a0 randomization.
+ *
+ * If randomization is selected from the a0 dropdown a random integer from 
+ * 0-9 (inclusive) is passed to seta0.
+ *
+ * @param	none
+ * @return	none
+ * @TODO	combine randa0 and randa1
+ */
+function randa0(){
+	seta0(Math.floor(Math.random() * 8) + 1);
+}
+
+/**
+ * Handler for a1 dropdown onclicks.
+ *
+ * When a definite a1 value is selected from the dropdown menu a1 is set as
+ * that value. The menu is disabled and the a1 field is updated to reflect the
+ * change to the user.
+ *
+ * @param 	{int}	i	number to set a1 as
+ * @return	none
+ * @TODO	combine seta0 and seta1
+ */
+function seta1(i){
+	secrets[1]=i;						//The integer is set to the a1 place in the secrets array
+	a1Listen=false;						//The a1 input boolean is set to false
+	console.log("a1: " + secrets[1]);	//a1 is printed to the console for debug
+	
+	document.getElementById("dropdownMenuButtona1").disabled = true;	//The a1 dropdown menu is disabled
+	document.getElementById("dropdownMenuButtona1").innerHTML = "a <sub>1</sub>&nbsp;=&nbsp;" + i;	//The field of menu is updated with a1
+	inputCheck();	//Checks if all input is completed
+}
+
+/**
+ * Handler for a1 randomization.
+ *
+ * If randomization is selected from the a1 dropdown a random integer from 
+ * 0-9 (inclusive) is passed to seta1.
+ *
+ * @param	none
+ * @return	none
+ * @TODO	combine randa0 and randa1
+ */
+function randa1(){
+	seta1(Math.floor(Math.random() * 9) + 1);
+}
