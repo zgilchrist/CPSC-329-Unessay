@@ -158,60 +158,147 @@ function twistH(cube, expB, weight, nextFunc, arg) {
 	}
 }
 	
-//========MAIN ANIMATION CHAIN=================================================
+//========ANIMATION CHAIN LINKS=================================================
 
 $('#carouselCube').carousel({interval: false});
 
-function rubieCubeIt() {
+/**
+ * The call to twist Alice's cube G^a0 times is made.
+ *
+ * The start of the animation chain sets the standard for these "link" 
+ * functions. The call to the G and H twisting functions is made with the 
+ * twist weight of the sequence (G*a0 + H*0 here) and the function
+ * to run after this animation is complete (the call for Bob's cube to twist
+ * G^b0, in this case). The tooltip carousel is also iterated in each of these
+ * links. Since this is the first link, the sequence tables on the webpage are
+ * initialized as blank.
+ *
+ * @param	none
+ * @return	none
+ */
+function aliceActionLinkA() {
+	//Sequence tracking tables are initialized to blank
 	document.getElementById("cube1Table").innerHTML = "";
 	document.getElementById("cube2Table").innerHTML = "";
-	twistG(cube1, secrets[0], 0, weighSeq(secrets[0], 0), animA);
-	$('#carouselCube').carousel("next");
+	
+	twistG(cube1, secrets[0], 0, weighSeq(secrets[0], 0), bobActionLinkA);	//Call to twist Alice's cube G^a0 * H^0, running into the next link afterwards
+	$('#carouselCube').carousel("next");	//The tooltip carousel is iterated
 }
 
-function animA() {
-	dualAnimSwitchNaive();
-	twistG(cube2, secrets[2], 0, weighSeq(secrets[2], 0), cubeFadeOut, animB);
-	$('#carouselCube').carousel("next");
+/**
+ * The call to twist Bob's cube G^b0 times.
+ *
+ * Starting from its solved state, Bob's cube is passed to be twisted 
+ * G^b0 * H^0 times. The cubes are then swapped between holders and the link
+ * is called where Alice applies some twists to Bob's cube.
+ * 
+ * @param	none
+ * @return	none
+ */
+function bobActionLinkA() {
+	dualAnimSwitchNaive();	//Animation pausing on the cubes is toggled
+	twistG(cube2, secrets[2], 0, weighSeq(secrets[2], 0), cubeFadeOut, aliceActionLinkB); //Call for a G^b0 * H^0 twist on Bob's cube, running into the cube swapping functions and then into the next link
+	$('#carouselCube').carousel("next"); 	//The tooltip carousel is iterated
 }
 
-function animB() {
-	twistG(cube2, secrets[0], secrets[1], weighSeq(secrets[0], secrets[1]), animC);
-	$('#carouselCube').carousel("next");
+/**
+ * The call for Alice to twist Bob's cube G^a0 + H^a1 times.
+ *
+ * On receiving Bob's cube after the first swap, it needs to be that Alice
+ * twists it the complete G^a0 * H^a1 sequence. The link is then called for
+ * Bob to apply their version of this sequence to Alice's cube.
+ * 
+ * @param	none
+ * @return	none
+ */
+function aliceActionLinkB() {
+	twistG(cube2, secrets[0], secrets[1], weighSeq(secrets[0], secrets[1]), bobActionLinkB);
+	$('#carouselCube').carousel("next");	//The tooltip carousel is iterated
 }
 
-function animC() {
-	dualAnimSwitchNaive();
-	twistG(cube1, secrets[2], secrets[3], weighSeq(secrets[2], secrets[3]), cubeFadeOut, animD);
-	$('#carouselCube').carousel("next");
+/**
+ * The call for Bob to twist Alice's cube G^b0 + H^b1 times.
+ *
+ * Like Alice to Bob's cube, Bob needs to apply the twist sequence G^b0 * H^b1
+ * to Alice's cube. The cubes are then swapped back to their original owners
+ * and Alice is called to apply her final sequence.
+ * 
+ * @param	none
+ * @return	none
+ */
+function bobActionLinkB() {
+	dualAnimSwitchNaive();	//Animation pausing on the cubes is toggled
+	twistG(cube1, secrets[2], secrets[3], weighSeq(secrets[2], secrets[3]), cubeFadeOut, aliceActionLinkC);
+	$('#carouselCube').carousel("next");	//The tooltip carousel is iterated
 }
 
-function animD() {
-	twistG(cube1, 0, secrets[1], weighSeq(0, secrets[1]), animE);
-	$('#carouselCube').carousel("next");
+/**
+ * The call to twist Alice's cube H^a1 times.
+ *
+ * Once her original cube is returned, Alice needs to apply her final 
+ * G^0 * H^a1 sequence. Bob is then called to do the same.
+ * 
+ * @param	none
+ * @return	none
+ */
+function aliceActionLinkC() {
+	twistG(cube1, 0, secrets[1], weighSeq(0, secrets[1]), bobActionLinkC);
+	$('#carouselCube').carousel("next");	//The tooltip carousel is iterated
 }
 
-function animE() {
-	dualAnimSwitchNaive();
-	twistG(cube2, 0, secrets[3], weighSeq(0, secrets[3]), done, "Ding!");
-	$('#carouselCube').carousel("next");
+/**
+ * The call to twist Bob's cube H^b1 times.
+ *
+ * For the final twisting sequence, Bob needs to apply G^0 * H^b1 to his 
+ * original cube. Afterwards, the carousel is set to advanced to final,
+ * congratulatory tooltip.
+ * 
+ * @param	none
+ * @return	none
+ */
+function bobActionLinkC() {
+	dualAnimSwitchNaive();	//Animation pausing on the cubes is toggled
+	twistG(cube2, 0, secrets[3], weighSeq(0, secrets[3]), done);
+	$('#carouselCube').carousel("next");	//The tooltip carousel is iterated
 }
+
+/**
+ * Iterates the carousel to the final tooltip.
+ *
+ * Once all sequences have applied to achieve the shared secret, the carousel 
+ * advances to the final tooltip the notify the user so.
+ *
+ * @param	none
+ * @return	none
+ */
 function done() {
-	$('#carouselCube').carousel("next");
+	$('#carouselCube').carousel("next");	//The tooltip carousel is iterated
 }
 
 //========TRANSITION FROM INPUT TO ANIMATION===================================================================================================================
 
+/**
+ * Assigns b0 and b1, bridges the input and animation sections.
+ *
+ * Once all user inputs have been completed a random b0 and b1 are randomly
+ * selected. There is then a short wait period before the demonstration's cube
+ * animations begin.
+ *
+ * @param	none
+ * @return	none
+ */
 function transition() {
+	//The b0 & b1 spots in the secret array are assigned a random int from 0 to 9 (inclusive)
 	secrets[2] = Math.floor(Math.random() * 8) + 1;
 	secrets[3] = Math.floor(Math.random() * 8) + 1;
 
+	//These values are printed to the webpage dropdowns and the console for debugging purposes
 	document.getElementById("b0").innerHTML = secrets[2];
 	document.getElementById("b1").innerHTML = secrets[3];
 	console.log("b0: " + secrets[2]);
 	console.log("b1: " + secrets[3]);
 	
-	wait(MIN_WAIT_WEIGHT, rubieCubeIt);
+	wait(MIN_WAIT_WEIGHT, aliceActionLinkA);	//A short wait separates the end of the user input section and the start of the animations
 }
 
 /**
