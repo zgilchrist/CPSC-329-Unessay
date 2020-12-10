@@ -1,12 +1,33 @@
 /**
  * Backend functionality for the Rubie-Cubeman educational web application.
  *
+ * For better understanding the process of this file, the Rubie-Cubeman 
+ * key-exchange method is briefly described. The two users, Alice and Bob, want
+ * to be able to have a shared, scrambled Rubik's cube configuration, but don't
+ * want external parties to be able to derive the cube from their
+ * communications. First, two sequences of Rubik's cube twists, G and H, are 
+ * agreed upon and made public. Alice decides on two random integers, a0 and 
+ * a1, and Bob finds their random b0 and b1, both keeping both of their numbers
+ * private from eachother. They apply the sequence of G exponentiated to their
+ * first private numbers and exchange cubes. Outsiders can see this exchange,
+ * but it shouldn't inform them of the final state of the cubes. Next, each
+ * applies the sequence of G exponentiated to their first random number then H
+ * exponentiated to their second random number to the cube they received and 
+ * they swap again. Again, an observer of the swap shouldn't be able to figure
+ * out the final cubes. Finally, each party applies H exponentiated to their 
+ * second random number to their original cube and they should end up with the
+ * same configuration unknown to any eavesdropper. 
+ *
  * This file contains the code responsible for handling input from and 
  * outputting to the web-based Rubie-Cubeman demonstration. The program begins
  * by defining some global variables and inserting two Cuber Rubik's cubes into
  * the HTML. Properties of these cubes are also set before the entirely event
- * driven phase is entered. On input of twists 
- * 
+ * driven phase is entered. Handler functions are set for a user playing the 
+ * role of Alice to input G, H, a0, and a1 on the webpage. When all of these
+ * are set b0 and b1 are randomly determined for Bob, a computer, and the
+ * key-exchange method is animated. The animation sequence follows the method,
+ * twisting and swapping the cubes on the HTML page until they are identical.
+ *
  * @author Adam Hiles
  * @author Delara Shamanian Esfahani
  * @since 06/12/2020
@@ -26,11 +47,19 @@ const MIN_WAIT_WEIGHT = (WAIT_GOAL - MIN_WAIT_TIME) / TWIST_TIME;
 /**
  * Waits for a weighted amount of time before running a function.
  *
- * This function uses setTimeout to wait for the amount of time provided by the
- * caller. After this pause it will continue to the caller defined function, 
+ * This function uses setTimeout to wait for a time based on the weighting
+ * provided by the caller. This weighting is intended to be the number of 
+ * twists in the current animation sequence, which is multiplied by the set
+ * twist time and subtracted from the goal time. This means that the total time
+ * the demonstration spends at each animation step (animation time plus wait 
+ * time) is about equal to the goal time, allowing the user ample time to read 
+ * the tooltips and observe the outcome of the sequence. If the calculated wait 
+ * time falls below the set minimum wait time, likely for long sequences, the 
+ * user is given a small wait after the animation completes. After the 
+ * applicable pause this function will continue to the caller defined function, 
  * passing through one additional argument to that argument if provided.
  *
- * @param 	{int}		waitTime	the time to wait in milliseconds.
+ * @param 	{int}		weight		The number of twists in the current sequence.
  * @param 	{function}  nextFunc	the function to call after the wait.
  * @param 	{unknown}	arg			argument to provide to nextFunc.
  */
@@ -50,7 +79,7 @@ function wait(weight, nextFunc, arg) {
  * 50 ms intervals idefinitely.
  *
  * @param 	{function}	condition	condition by which the promise resolves.
- * @return	{Promise}	a promise that resolve on a true condition
+ * @return	{Promise}	a promise that resolve on a true condition.
  */
 function waitFor(condition) {
   const poll = resolve => {						//Resolution function for the promise
@@ -64,83 +93,184 @@ function waitFor(condition) {
 //========CUBE SWAPPING========================================================================================================================================
 
 /**
- * 
+ * Animation for fading in both cubes.
  *
+ * The setInterval function is used to drive a simple animation that begins
+ * both cubes at opacity zero and slowly increases them both 0.05 at a time
+ * until they are fully opaque. At this point a wait function is called for 
+ * the minimum wait time after which it will continue to the next animation
+ * link.
  *
- *
- *
- *
+ * @param	{function}	nextFunc	the next animation link function.
+ * @return	none
+ * @TODO	combine fadeIn and fadeOut?
  */
 function cubeFadeIn(nextFunc) {
-	var opac = 0;
+	//Both opacities begin at zero
+	var opac = 0;	
 	cube1.domElement.style.opacity = opac;
 	cube2.domElement.style.opacity = opac;
-	var id = setInterval(frame, 5);
+	
+	var id = setInterval(frame, 5);	//Runs a frame every five milliseconds
 	function frame() {
-		if (cube1.domElement.style.opacity >= 1.0) {
-			clearInterval(id);
+		if (cube1.domElement.style.opacity >= 1.0) {	
+			clearInterval(id);	//Frames stop once cubes have faded in
 		} else {
+			//The opacity of each cube is increased by 0.05 towards 1.0
 			opac += 0.05;
 			cube1.domElement.style.opacity = opac;
 			cube2.domElement.style.opacity = opac;
 		}
 	}
 	
-	waitFor(_ => cube1.domElement.style.opacity >= 1.0).then(_ => wait(MIN_WAIT_WEIGHT, nextFunc));
+	waitFor(_ => cube1.domElement.style.opacity >= 1.0).then(_ => wait(MIN_WAIT_WEIGHT, nextFunc));	//Calls to wait on a full fade in
 }
 
+/**
+ * Animation for fading out both cubes.
+ *
+ * The setInterval function is used to fade out both cubes in increments of
+ * 0.05 opacity until they are invisible. Once this is done a function is
+ * called to swap the cubes.
+ *
+ * @param 	{function}	nextFunc	the function to run after the cube swapping animations finish.
+ * @return	none
+ * @TODO	combine fadeIn and fadeOut?
+ */
 function cubeFadeOut(nextFunc) {
+	//Both opacities begin at one
 	var opac = 1.0;
 	cube1.domElement.style.opacity = opac;
 	cube2.domElement.style.opacity = opac;
-	var id = setInterval(frame, 5);
+	
+	var id = setInterval(frame, 5);	//Runs a frame every five milliseconds
 	function frame() {
 		if (cube1.domElement.style.opacity <= 0.0) {
-			clearInterval(id);
+			clearInterval(id);	//Frames stop once cubes have faded in
 		} else {
+			//The opacity of each cube is increased by 0.05 towards 1.0
 			opac -= 0.05;
 			cube1.domElement.style.opacity = opac;
 			cube2.domElement.style.opacity = opac;
 		}
 	}
 	
-	waitFor(_ => cube1.domElement.style.opacity <= 0.0).then(_ => swapCubes(nextFunc));
+	waitFor(_ => cube1.domElement.style.opacity <= 0.0).then(_ => swapCubes(nextFunc));	//Calls to swap the cubes' containers
 }
 
+/**
+ * Swaps cubes between their containers in HTML.
+ *
+ * After the cubes have been animated to fade out they are moved to the other's
+ * container, then faded back in.
+ *
+ * @param	{funciton}	nextFunc	function to run after the cubes have been swapped and animated doing so.
+ * @return	none
+ */
 function swapCubes(nextFunc) {
+	//Gets the containers for each cube
 	loc1 = cube1.domElement.parentNode;
 	loc2 = cube2.domElement.parentNode;
+	
+	//cube2 replaces cube1 in its container, cube1 is then inserted into cube2's original one
 	loc1.replaceChild(cube2.domElement, cube1.domElement);
 	loc2.insertBefore(cube1.domElement, loc2.firstChild);
 	
-	cubeFadeIn(nextFunc);
+	cubeFadeIn(nextFunc);	//Cubes are animated to fade in
 }
 
+/**
+ * Toggles which cubes' animations are active.
+ *
+ * The Cuber package has a peculiarity where it is unable to process the 
+ * animations for any cube created after the first. This can be fixed by
+ * pausing the animations of the first cube, though this has framerate issues
+ * for the supplementary cubes. This fix is implemented here, simply toggling 
+ * the paused states of the two cubes where they are expected to be different.
+ *
+ * @param	none
+ * @return	none
+ * @TODO	Better dual animation solution, smoke and mirrors approach may work if can figure out cube state copying
+ */
 function dualAnimSwitchNaive() {
-	cube1.paused ^= true;
-	cube2.paused ^= true;
+	cube1.paused ^= true;	//A boolean xor'd with true toggles it
+	cube2.paused ^= true;	//This is down for both cube's animation paused states
 }
 
 //========TWIST HANDLERS=======================================================================================================================================
 
+/**
+ * Returns the twist weight of the sequence.
+ *
+ * When passed the exponentials of the next twisting sequence, this function
+ * will return the number of twists it will go through using the lengths of the
+ * G and H sequences.
+ *
+ * @param	{int}	expA	the exponential corresponding to the G sequence.
+ * @param	{int}	expB	the exponential corresponding to the H sequence.
+ * @return	{int}	the number of twists in the whole, G and H sequence.
+ */
 function weighSeq(expA, expB) {
 	return (expA * gComms.length) + (expB * hComms.length);
 }
 
+/**
+ * Apply a number of G sequence twists to a cube.
+ *
+ * To actaully apply twists to a given cube, all instances of the G sequence
+ * that need to be applied, are. For Alice and Bob's final twists to their 
+ * cubes no G twists need to be applied, which would be captured in a passed
+ * expA of zero and the function immediately continues to the H twists. 
+ * Otherwise, each call of this function will twist the specified cube by the G
+ * once. It will wait for this sequence to be completed, then decrementing expA
+ * and logging a G sequence in the cube's table on the webpage. The function is
+ * then called recursively with same arguments. expA eventually reaches 0 and 
+ * the H twists are then applied with G having been applied the original expA
+ * number of times. The twist weight of the whole sequence and the funciton to
+ * call after its completion and passed through at every point
+ *
+ * @param	{Cube}		cube		the cube object to apply the twists to.
+ * @param	{int}		expA		the remaining number of times to apply G to cube.
+ * @param 	{int}		expB		the number of times H needs to be applied to cube.
+ * @param	{int}		weight		the number of twists in the whole G and H sequence.
+ * @param	{function}	nextFunc	the function to run once the whole sequence has been animated.
+ * @param	{unknwon}	arg			the argument to be passed to nextFunc.
+ * @return	none
+ */
 function twistG(cube, expA, expB, weight, nextFunc, arg) {
-	if (expA == 0) twistH(cube, expB, weight, nextFunc, arg);
+	if (expA == 0) twistH(cube, expB, weight, nextFunc, arg);	//Continue to the H twists once expA reaches zero
 	else {
-		cube.twist(gComms);
+		cube.twist(gComms);	//Apply the G sequence twists to the cube
+		
+		//Wait for G to be applied
 		waitFor(_ => cube.isTweening() == 9).then(_ => 
 		waitFor(_ => cube.isTweening() == 0).then(_ => 
 		{
-			expA--;
-			document.getElementById(cube.domElement.id + "Table").innerHTML += "G";
-			twistG(cube, expA, expB, weight, nextFunc, arg);
+			expA--;	//Decrement expA
+			document.getElementById(cube.domElement.id + "Table").innerHTML += "G";	//Add a G to the cube's table
+			twistG(cube, expA, expB, weight, nextFunc, arg);	//Recursive call with reduced expA
 		}));
 	}
 }
 
+/**
+ * Apply a number of H sequence twists to a cube.
+ *
+ * Similar to and directly following twistG, twistH applies the H sequence a
+ * number of times to the given cube. Each time H is applied expB is 
+ * decremented and the function is called recursively to end with H being 
+ * applied the original expB number of times. When expB reaches zero a space is
+ * added to the cube's table to separate sequences and the program waits with
+ * the weighting and funciton parameters that have been preserved through the
+ * animation calls.
+ *
+ * @param	{Cube}		cube		the cube object to apply the twists to.
+ * @param	{int}		expB		the remaining number of times to apply H to cube.
+ * @param	{int}		weight		the number of twists in the whole G and H sequence.
+ * @param	{function}	nextFunc	the function to run once the whole sequence has been animated.
+ * @param	{unknwon}	arg			the argument to be passed to nextFunc.
+ * @return	none
+ */
 function twistH(cube, expB, weight, nextFunc, arg) {
 	if (expB == 0) { 
 		document.getElementById(cube.domElement.id + "Table").innerHTML += " ";
@@ -362,8 +492,8 @@ cube2.paused = true;
  * inverse moves (lowercase) as uppercase + i (e.x. "DBf" -> "D B Fi "). The
  * formatted string is returned to the caller.
  * 
- * @param	{String}	moveSet	the twist string to format
- * @return	{String}	the formatted version of moveSet
+ * @param	{String}	moveSet	the twist string to format.
+ * @return	{String}	the formatted version of moveSet.
  */
 function twistsToString(moveSet) {
 	fMoveSet = "";																	//String for the formatted moveset is initialized
@@ -438,7 +568,7 @@ function clearInputSeq() {
  * toggled and the upper limit ones are if the length will increase to the 
  * SEQ_LIM.
  *
- * @param	{String}	c	a Cuber twist
+ * @param	{String}	c	a Cuber twist.
  * @return	none
  */
 function cubeinput(c) {
@@ -550,7 +680,7 @@ document.getElementById("submitG").onclick=function(){
  * that value. The menu is disabled and the a0 field is updated to reflect the
  * change to the user.
  *
- * @param 	{int}	i	number to set a0 as
+ * @param 	{int}	i	number to set a0 as.
  * @return	none
  * @TODO	combine seta0 and seta1
  */
@@ -585,7 +715,7 @@ function randa0(){
  * that value. The menu is disabled and the a1 field is updated to reflect the
  * change to the user.
  *
- * @param 	{int}	i	number to set a1 as
+ * @param 	{int}	i	number to set a1 as.
  * @return	none
  * @TODO	combine seta0 and seta1
  */
