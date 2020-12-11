@@ -204,7 +204,7 @@
                                         over computer networks without the security drawbacks  and inconveniences of symmetric key exchange protocols. This was achieved by establishing
                                         a shared secret, or public key, between the communicating parties over a public channel. The jointly established public key could be shared over 
                                         an insecure channel because it would require a corresponding private key, unique to each communicating party, then encrypt all further communication 
-                                        with the key being used as a symmetric key cipher. It was initially conceived by Ralph Merkle but was formally published by Diffie and Hellman in 1976. 
+                                        with the key being used as a symmetric key cipher.<br><br> It was initially conceived by Ralph Merkle but was formally published by Diffie and Hellman in 1976. 
                                         Hellman made a comment in 2002, suggesting it should be renamed to Diffie-Hellman-Merkle for Merkle’s early contributions to the protocol.
                                     </p>
                                     <button class="btn btn-primary" data-dismiss="modal">
@@ -243,11 +243,11 @@
                                     <p class="mb-5 text-center">
                                         The Rubie-Cubeman public-key exchange protocol is a new tool for visualizing the asymmetric key-exchange relationship applied by the Diffie-Hellman 
                                         key exchange, but in a simplified and interactive manner that makes for an excellent educational tool. It is currently being developed by Dr. Ryan 
-                                        Henry for an academic paper he is writing. The Rubie-Cubeman protocol bears similarity to the Diffie-Hellman protocol, but with a second consecutive 
+                                        Henry for an academic paper he is writing. The Rubie-Cubeman protocol bears similarity to the Diffie-Hellman protocol but with a second consecutive 
                                         round of public key sharing to address the non-commutativity of the Rubik’s Cube group. We’ve created the Rubie-Cubeman public-key exchange protocol 
                                         visualizer to demonstrate this protocol. <br><br>
                                         It is important to note that the cubes can be extrapolated far beyond the complexity of the 3x3 cube shown here. To increase security against brute 
-                                        force attacks one could use a 100x100 or a 1000x1000 cube, for example. This is analogous to increasing cryptographic constructions and security parameters. 
+                                        force attacks one could use a 100x100 or even a 1000x1000 cube, for example. This is analogous to increasing cryptographic constructions and security parameters. 
                                         Further, the paper details one-way functions that include Binary Rubik’s Cube Exponentiation and Baby-Twists/Giant Twists that can significantly increase 
                                         security against cryptographic attacks. These are complex and mathematically intensive functions which will not be demonstrated in our model.    
                                     </p>
@@ -298,7 +298,7 @@
                                         <li>Now, Alice applies <strong>H</strong>, <strong>a<sub>1</sub></strong> number of times to the cube Alice received back from Bob, and Bob applies <strong>H</strong>, <strong>b<sub>1</sub></strong> number of times to the cube Bob received from Alice.</li>
                                     </ul>
                                     <p>If done correctly, both cubes should result in identical configurations, which is the shared secret key between Alice and Bob. Fortunately for Alice and Bob, Eve has no 
-                                        way of finding out what their private keys [a0,a1] and [b0,b1] are from the cubes.</p>
+                                        way of finding out what their private keys, <strong>[a<sub>o</sub>, a<sub>1</sub>]</strong> and <strong>[b<sub>o</sub>, b<sub>1</sub>]</strong>, are from the cubes.</p>
                                     </p>
                                     <button class="btn btn-primary" data-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
