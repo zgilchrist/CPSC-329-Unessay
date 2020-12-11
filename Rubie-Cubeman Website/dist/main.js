@@ -603,8 +603,8 @@ function cubeBksp() {
 	len--												//The length tracker decrements
 	
 	if (len == 0) {	//If the length decreases to zero the H and G preview fields change to an input print
-		if (confirmHHandler) document.getElementById("Hvalue").innerHTML = "Print H values";	//H field is updated only if it has not been submitted
-		if (confirmGHandler) document.getElementById("Gvalue").innerHTML = "Print G values";	//^ for G
+		if (confirmHHandler) document.getElementById("Hvalue").innerHTML = "select move set H";	//H field is updated only if it has not been submitted
+		if (confirmGHandler) document.getElementById("Gvalue").innerHTML = "select move set G";	//^ for G
 	}
 	else {	//Otherwise the fields are updated with the new input sequence formatted
 		if (confirmHHandler) document.getElementById("Hvalue").innerHTML = twistsToString(input1);	//H field only updates if it has not been submitted
