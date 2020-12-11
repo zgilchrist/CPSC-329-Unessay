@@ -1,5 +1,5 @@
 # CPSC-329-Unessay
-* The Rubie-Cubeman Educational Public Key-Exchange Visualizer.
+* The [Rubie-Cubeman](https://pr.iva.cy/rubie-cubeman/) Educational Public Key-Exchange Visualizer.
 
 * The final project for CPSC 329 Fall 2020 at the University of Calgary with Dr. Ryan Henry.
 
