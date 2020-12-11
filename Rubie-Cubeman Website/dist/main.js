@@ -30,6 +30,7 @@
  *
  * @author Adam Hiles
  * @author Delara Shamanian Esfahani
+ * @author Zachary Gilchrist
  * @since 06/12/2020
  */
 

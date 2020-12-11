@@ -1,9 +1,10 @@
 # CPSC-329-Unessay
-The Rubie-Cubeman Educational Public Key-Exchange Visualizer.
-The final project for CPSC 329 Fall 2020 at the University of Calgary from Dr. Henry.
+* The Rubie-Cubeman Educational Public Key-Exchange Visualizer.
+
+* The final project for CPSC 329 Fall 2020 at the University of Calgary with Dr. Ryan Henry.
 
 ## Getting started with Rubie Cubeman
-Clone the repository and host both the index.html and rubie-cubeman.html files either locally or deployed. 
+Clone the repository and host index.html either locally or deployed. Everything must be in the same folder structure as it is in the repository to work properly.
 
 ## Built With
 * [Bootstrap](https://getbootstrap.com/) - for the web framework
