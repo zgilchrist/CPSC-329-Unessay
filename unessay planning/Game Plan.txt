@@ -136,11 +136,11 @@ Site decisions/issues: added dec 7 2020 ZG
 -fix size of carousel text boxes *Tania* *DONE*
 -add home button on rubie-cubeman.html page *Tania* *DONE*
 
--finish documentation on Main.js *Adam*
+-finish documentation on Main.js *Adam* *DONE DONE TOO MUCH DONE*
 
--readme good? *Zach*
--increase length of time between carousel slides (total animation time) *Zach*
--[OPTIONAL] look into possibly linking carousel slides to events w/ ids & adding manual carousel slide buttons *Zach*
+-readme good? *Zach* 
+-increase length of time between carousel slides (total animation time) *Zach* *DONE*
+-[OPTIONAL] look into possibly linking carousel slides to events w/ ids & adding manual carousel slide buttons *Zach* *MEH*
 
 
 

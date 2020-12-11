@@ -22,4 +22,4 @@ The cubes are then exchanged between Alice and Bob. Eve, a potential eavesdroppe
 With the cube Alice received from Bob, Alice applies move set G, a0 number of times, and then applies move set H, a1 number of times. Similarly, Bob applies move set G, b0 number of times, and then applies move set H, b1 number of times to the cube Bob received from Alice.
 The cubes are exchanged once again, also observable by Eve.
 Now each Alice applies H a1 number of times to the cube Alice received back from Bob, and Bob applies H b1 number of times to the cube Bob received from Alice.
-If done correctly, both cubes should result in identical configurations, which is the shared secret key between Alice and Bob. Fortunately for Alice and 
+If done correctly, both cubes should result in identical configurations, which is the shared secret key between Alice and Bob. Fortunately for Alice and Bob, Eve has no way of finding out what their private keys [a0,a1] and [b0,b1] are from the cubes. 
