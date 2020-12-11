@@ -1,0 +1,25 @@
+//Background on Cryptographic Key Exchanges
+Symmetric-key cryptography requires that both the sender and recipient of a secure communication share the same private key. Symmetric-key cryptography relies on the use of a trusted third party to share the private key between the communicating parties. Unfortunately, the use of a shared private key is the main drawback of the symmetric-key system. This is because the private key is susceptible to attacks when it is being shared. Asymmetric, or public key exchange protocols address this issue by implementing the use of public-private key pairs.
+
+//Introducing Public-Key Cryptography: The Diffie-Hellman Key Exchange
+Seen above is Ralph Merkle (left), Martin Hellman (center), and Whitefield Diffie (right).
+The Diffie-Hellman key exchange is one of the first practical applications of an asymmetric public key exchange protocol, which implements a jointly established public key and corresponding private keys. 
+It was created out of a need to secure communication over computer networks without the security drawbacks of symmetric key exchange protocols. This was achieved by establishing a shared secret, or public key, between the communicating parties over a public channel. The jointly established public key could be shared over an insecure channel because it would require a corresponding private key, unique to each communicating party, to access the secure communication. 
+It was initially conceived by Ralph Merkle but was formally published by Diffie and Hellman in 1976. Hellman made a comment in 2002, suggesting it should be renamed to Diffie-Hellman-Merkle for Merkle’s early contributions to the protocol. 
+
+//The Rubie-Cubeman Public-Key Exchange Protocol
+The Rubie-Cubeman public-key exchance protocol is a new tool for visualizing the asymmetric key-exchange relationship applied by the Diffie-Hellman key exchange, but in a simplified and interactive manner that makes for an excellent educational tool. It is currently being developed by Dr. Ryan Henry for an academic paper he is writing.
+The Rubie-Cubeman protocol mimics the Diffie-Hellman protocol, but with a second round of public key sharing to address the non-commutativity of the Rubik’s Cube group. We’ve created the Rubie-Cubeman public-key exchange protocol visualizer to demonstrate these principles. 
+It is important to note that the cubes can be extrapolated far beyond the complexity of the 3x3 cube shown here. To increase security against brute force attacks one could use a 100x100 or a1000x1000, for example. This is analogous to increasing cryptographic constructions and security parameters. 
+Further, the paper details one-way functions that include Binary Rubik’s Cube Exponentiation and Baby-Twists/Giant Twists that can significantly increase security against cryptographic attacks. These are complex and mathematically intensive functions which will not be demonstrated in our model. 
+
+//Rubie-Cubeman: How it Works
+Let’s say both Alice and Bob each start with a solved Rubik’s Cube.
+Alice and Bob establish a shared secret in the form of the cube move sequences, G and H.
+Alice and Bob also establish their own pair of secret values, [ao, a1] and [b0, b1] respectively, which they will not share.
+Alice and Bob each apply the first shared sequence of moves, G, to their solved cubes. Alice applies G a0 number of times, and Bob applies G b0 number of times.
+The cubes are then exchanged between Alice and Bob. Eve, the eavesdropper, could see this interaction and what the cubes look like in this state but not the sequence of moves to get to that state. 
+With the cube she received from Bob, Alice applies move set G, a0 number of times, and then applies move set H, a1 number of times. Similarly, Bob applies move set G, b0 number of times, and then applies move set H, b1 number of times to the cube he received from Alice.
+The cubes are exchanged once again, also viewable by Eve.
+Now each Alice applies H a1 number of times to the cube she received back from Bob, and Bob applies H b1 number of times to the cube he received from Alice.
+If done correctly, both cubes should result in identical configurations, which is the shared secret key between Alice and Bob. Fortunately for Alice and 

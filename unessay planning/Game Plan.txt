@@ -129,7 +129,7 @@ Site decisions/issues: added dec 7 2020 ZG
 -Description on bottom of home page *DONE*
 -cube moves '?' ? button what does it do? *DONE*
 
--proof read *Tania*
+-proof read *Tania* *DONE*
 -make shitty images for "How To" *Tania*
 -how it works left justify bullet points *Tania* *DONE*
 -4 x 3 input keyboard *Tania* *DONE*

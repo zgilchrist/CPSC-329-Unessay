@@ -1,11 +1,12 @@
+
 //history of exchanges
-Before public-key cryptography existed, symmetric key cryptography had to be used which unfortunately relied upon the use of a trusted third party to share a private key between them. Now the problem here is that the initial key exchange is difficult to prove that it hasn’t been intercepted and thus, is hard to trust its legitimacy. Thus, we now enter asymmetric key exchanges which aimed to fix many of the existing problems with current forms of key exchange. 
+Before public-key cryptography existed, symmetric key cryptography had to be used which unfortunately relied upon the use of a trusted third party to share a private key between them. Now the problem here is that the initial key exchange is difficult to prove that it hasnï¿½t been intercepted and thus, is hard to trust its legitimacy. Thus, we now enter asymmetric key exchanges which aimed to fix many of the existing problems with current forms of key exchange. 
 
 //diffie-Hellman background
 Seen above is Ralph Merkle(left), Martin Hellman(centre), and Whitefield Diffie(right).
 The Diffie-Hellman key exchange is a cryptographic asymmetric public key exchange that relies upon the use of shared secrets. 
 It was created out of need for select communication over computer networks without the large inconveniences of current symmetric key exchange protocols. It achieved this by establishing a shared secret over a public channel which can then encrypt all further communication with the key being used as a symmetric key cipher. 
-It was initially conceived by Ralph Merkle but was formally published by Diffie and Hellman in 1976. Hellman made a comment in 2002 that it should be renamed to Diffie-Hellman-Merkle for Merkle’s early contributions to the protocol. 
+It was initially conceived by Ralph Merkle but was formally published by Diffie and Hellman in 1976. Hellman made a comment in 2002 that it should be renamed to Diffie-Hellman-Merkle for Merkleï¿½s early contributions to the protocol. 
 
 //diffie-hellman how it works
 Diffie-Hellman is a cryptographic asymmetric public key exchange that relies upon the use of shared secrets.
@@ -19,9 +20,9 @@ They now both have the same shared secret.
 
 //rubie-cubeman why
 Rubie-Cubeman is a new tool for describing these relationships of Diffie-Hellman but in a simplified and interactive manner that makes it a great educational tool. It is being developed by Dr. Ryan Henry for a new paper he is writing.
-The Rubik’s cube is used as an analog for the complex mathematical sequences of Diffie-Hellman by giving it states that Alice and Bob can both reach with different sets of rotations. The cubes on this site are designed to demonstrate these principles. 
+The Rubikï¿½s cube is used as an analog for the complex mathematical sequences of Diffie-Hellman by giving it states that Alice and Bob can both reach with different sets of rotations. The cubes on this site are designed to demonstrate these principles. 
 It is important to note that the cubes can be extrapolated far beyond the complexity of the 3x3 cube shown here. To generate some actual resistance to a brute force one could use a 100x100 or 1000x1000 for example. This is analogous to increasing cryptographic constructions and security parameters. 
-Additionally, in the paper there are one-way functions that are described that include Binary Rubik’s Exponentiation and Baby-twist/Giant Twists that would also significantly increase the security against an attack. They are complex, mathematically intensive functions. 
+Additionally, in the paper there are one-way functions that are described that include Binary Rubikï¿½s Exponentiation and Baby-twist/Giant Twists that would also significantly increase the security against an attack. They are complex, mathematically intensive functions. 
 
 //rubie-cubeman how
 Both Alice and Bob start with a solved cube.
@@ -33,6 +34,6 @@ Now each of them applies the second set of twists to the cubes again the secret 
 Now each of the cubes will have identical configurations resulting in a shared secret between Alice and Bob while Eve cannot know what this looks like as no exchanges happened since the last one.
 
 //rotation notation
-Seen above is the notation used for the twists that Rubik’s cubes use to move. 
+Seen above is the notation used for the twists that Rubikï¿½s cubes use to move. 
 
 
