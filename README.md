@@ -3,7 +3,7 @@
 
 * The final project for CPSC 329 Fall 2020 at the University of Calgary with Dr. Ryan Henry.
 
-## Getting started with Rubie Cubeman
+## Getting started with Rubie-Cubeman
 Clone the repository and host index.html either locally or deployed. Everything must be in the same folder structure as it is in the repository to work properly.
 
 ## Built With
